@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Threads & Temperatures — Game</title>
   <link rel="stylesheet" href="assets/style.css"/>
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
   <style>
     body {
       background: url('assets/fittingroom.png') no-repeat center center fixed;
       background-size: cover;
       margin: 0;
-      /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
       display: flex;
       flex-direction: column;
       overflow-y: auto;
@@ -94,8 +94,13 @@
       border: 2px solid rgba(255, 255, 255, 0.3);
     }
     .arrow:hover { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); transform: scale(1.15); box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4); }
-    #top-leftArrow { top: 35%; left: -25px; } #top-rightArrow { top: 35%; right: -25px; }
-    #bottom-leftArrow { top: 65%; left: -25px; } #bottom-rightArrow { top: 65%; right: -25px; }
+
+    #top-leftArrow { top: 30%; left: -25px; }
+    #top-rightArrow { top: 30%; right: -25px; }
+    #bottom-leftArrow { top: 60%; left: -25px; }
+    #bottom-rightArrow { top: 60%; right: -25px; }
+    #shoe-leftArrow { top: 85%; left: -25px; } /* NEW */
+    #shoe-rightArrow { top: 85%; right: -25px; } /* NEW */
 
     #counter-display {
       position: absolute;
@@ -131,69 +136,49 @@
       z-index: 10;
       border: 2px solid rgba(255, 255, 255, 0.3);
     }
-    #submit-btn:hover { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); }
-
-    #submit-modal {
-      position: fixed;
-      top:0; left:0; right:0; bottom:0;
-      width:100vw; height:100vh;
-      background: rgba(0,0,0,0.65);
-      z-index: 9999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: #fff;
-      font-family: inherit;
-      text-align: center;
-      animation: fadeIn 0.5s;
-    }
-    @keyframes fadeIn { from {opacity:0;} to{opacity:1;} }
-    .submit-sequence { font-size: 2rem; margin-bottom:24px; font-weight:700; letter-spacing:1px; }
-    .submit-impact { font-size: 1.2rem; margin:18px 0; background: rgba(255,255,255,0.12); border-radius:12px; padding:18px 24px; display:flex; align-items:center; gap:12px; justify-content:center; min-width:320px; max-width:90vw; flex-direction: column; }
-    .submit-impact-icon { font-size: 1rem; margin-top: 8px; }
-    .continue-btn, .close-btn {
-      margin-top: 24px; padding: 10px 24px; background: #0077b6; color:#fff; border:none; border-radius:12px;
-      font-size:1rem; cursor:pointer; font-weight:600; box-shadow:0 2px 8px rgba(0,0,0,0.18); transition: background 0.2s; display:inline-block;
-    }
-    .continue-btn:hover, .close-btn:hover { background:#023e8a; }
   </style>
 </head>
 <body>
-  <nav class="nav">
-  <div class="nav-inner">
-    <div class="brand">
-      <img src="assets/img/logo.png" alt="Threads & Temperatures logo" class="logo">
-      Threads & Temperatures
-    </div>
-    <div class="menu"><a href="index.html">Home</a><a href="games.html" style="background:rgba(76,201,240,.22)">Game</a><a href="data.html">Data</a><a href="articles.html">News Hub</a><a href="charities.html">Charities</a></div>
-  </div>
-</nav>
-
-<div id="submit-modal"><div id="submit-modal-content"></div></div>
 
 <main>
   <div id="info-cards">
     <div class="info-card"><h2>Top Details</h2><p id="fabric">Fabric: Cotton</p><p id="co2">CO₂ Emission: 12 kg</p><p id="brand">Brand: EcoWear</p></div>
     <div class="info-card"><h2>Bottom Details</h2><p id="bottom-fabric">Fabric: Denim</p><p id="bottom-co2">CO₂ Emission: 20 kg</p><p id="bottom-brand">Brand: BlueJeans</p></div>
+    <!-- NEW Shoe Card -->
+    <div class="info-card"><h2>Shoe Details</h2><p id="shoe-fabric">Material: Canvas</p><p id="shoe-co2">CO₂ Emission: 10 kg</p><p id="shoe-brand">Brand: FootPrint</p></div>
   </div>
 
   <div id="dressup-wrapper">
     <div id="dressup-stage">
+      <!-- NEW Shoes -->
+      
+
       <img id="base" src="assets/base1.PNG" alt="Doll base">
+
+      <img class="outfit shoe" src="assets/shoe1.PNG">
+      <img class="outfit shoe" src="assets/shoe2.PNG">
+      <img class="outfit shoe" src="assets/shoe3.PNG">
+
+      <!-- Bottoms -->
       <img class="outfit bottom" src="assets/bottom1.PNG">
       <img class="outfit bottom" src="assets/bottom2.PNG">
       <img class="outfit bottom" src="assets/bottom3.PNG">
-     
-      
+
+      <!-- Tops -->
       <img class="outfit top" src="assets/top1.PNG">
       <img class="outfit top" src="assets/top2.PNG">
       <img class="outfit top" src="assets/top3.PNG">
+
+      
     </div>
+
     <button class="arrow" id="top-leftArrow">⟨</button>
     <button class="arrow" id="top-rightArrow">⟩</button>
     <button class="arrow" id="bottom-leftArrow">⟨</button>
     <button class="arrow" id="bottom-rightArrow">⟩</button>
+    <!-- NEW Shoe Arrows -->
+    <button class="arrow" id="shoe-leftArrow">⟨</button>
+    <button class="arrow" id="shoe-rightArrow">⟩</button>
   </div>
 </main>
 
@@ -204,74 +189,70 @@
 (function(){
   const tops = Array.from(document.querySelectorAll('.outfit.top'));
   const bottoms = Array.from(document.querySelectorAll('.outfit.bottom'));
-  let topCurrent=0, bottomCurrent=0;
+  const shoes = Array.from(document.querySelectorAll('.outfit.shoe')); // NEW
+
+  let topCurrent=0, bottomCurrent=0, shoeCurrent=0; // NEW
+
   const topDetails=[{fabric:'Cotton',co2:'12',brand:'EcoWear'},{fabric:'Silk',co2:'8',brand:'Zara'},{fabric:'Polyester',co2:'15',brand:'FastFashion'}];
   const bottomDetails=[{fabric:'Denim',co2:'20',brand:'Shein'},{fabric:'Cotton',co2:'15',brand:'EcoWear'},{fabric:'Leather',co2:'30',brand:'LeatherCo'}];
-  const visitedTops=new Set(), visitedBottoms=new Set();
+  const shoeDetails=[ // NEW
+    {fabric:'Canvas',co2:'10',brand:'FootPrint'},
+    {fabric:'Leather',co2:'25',brand:'Runway'},
+    {fabric:'Rubber',co2:'18',brand:'FastStep'}
+  ];
+
+  const visitedTops=new Set(), visitedBottoms=new Set(), visitedShoes=new Set(); // NEW
   const fabric=document.getElementById('fabric'), co2=document.getElementById('co2'), brand=document.getElementById('brand');
   const bottomFabric=document.getElementById('bottom-fabric'), bottomCo2=document.getElementById('bottom-co2'), bottomBrand=document.getElementById('bottom-brand');
+  const shoeFabric=document.getElementById('shoe-fabric'), shoeCo2=document.getElementById('shoe-co2'), shoeBrand=document.getElementById('shoe-brand'); // NEW
   const counterDisplay=document.getElementById('counter-display');
 
-  function updateCounter(){ counterDisplay.textContent=`Clothing articles tried on: ${visitedTops.size+visitedBottoms.size}`; }
-  
+  function updateCounter(){
+    counterDisplay.textContent=`Clothing articles tried on: ${visitedTops.size+visitedBottoms.size+visitedShoes.size}`;
+  }
+
   function updateTops(){
-    tops.forEach((o,i)=>{ o.classList.remove('active','left','right'); if(i===topCurrent)o.classList.add('active'); else if(i===topCurrent-1||(topCurrent===0&&i===tops.length-1))o.classList.add('left'); else if(i===topCurrent+1||(topCurrent===tops.length-1&&i===0))o.classList.add('right'); });
-    const d=topDetails[topCurrent]; fabric.textContent='Fabric: '+d.fabric; co2.textContent='CO₂ Emission: '+d.co2+' kg'; brand.textContent='Brand: '+d.brand;
+    tops.forEach((o,i)=>{ o.classList.remove('active','left','right');
+      if(i===topCurrent)o.classList.add('active');
+      else if(i===topCurrent-1||(topCurrent===0&&i===tops.length-1))o.classList.add('left');
+      else if(i===topCurrent+1||(topCurrent===tops.length-1&&i===0))o.classList.add('right'); });
+    const d=topDetails[topCurrent];
+    fabric.textContent='Fabric: '+d.fabric; co2.textContent='CO₂ Emission: '+d.co2+' kg'; brand.textContent='Brand: '+d.brand;
     visitedTops.add(topCurrent); updateCounter();
   }
 
   function updateBottoms(){
-    bottoms.forEach((o,i)=>{ o.classList.remove('active','left','right'); if(i===bottomCurrent)o.classList.add('active'); else if(i===bottomCurrent-1||(bottomCurrent===0&&i===bottoms.length-1))o.classList.add('left'); else if(bottomCurrent+1||(bottomCurrent===bottoms.length-1&&i===0))o.classList.add('right'); });
-    const d=bottomDetails[bottomCurrent]; bottomFabric.textContent='Fabric: '+d.fabric; bottomCo2.textContent='CO₂ Emission: '+d.co2+' kg'; bottomBrand.textContent='Brand: '+d.brand;
+    bottoms.forEach((o,i)=>{ o.classList.remove('active','left','right');
+      if(i===bottomCurrent)o.classList.add('active');
+      else if(i===bottomCurrent-1||(bottomCurrent===0&&i===bottoms.length-1))o.classList.add('left');
+      else if(i===bottomCurrent+1||(bottomCurrent===bottoms.length-1&&i===0))o.classList.add('right'); });
+    const d=bottomDetails[bottomCurrent];
+    bottomFabric.textContent='Fabric: '+d.fabric; bottomCo2.textContent='CO₂ Emission: '+d.co2+' kg'; bottomBrand.textContent='Brand: '+d.brand;
     visitedBottoms.add(bottomCurrent); updateCounter();
   }
 
+  // NEW — updateShoes function
+  function updateShoes(){
+    shoes.forEach((o,i)=>{ o.classList.remove('active','left','right');
+      if(i===shoeCurrent)o.classList.add('active');
+      else if(i===shoeCurrent-1||(shoeCurrent===0&&i===shoes.length-1))o.classList.add('left');
+      else if(i===shoeCurrent+1||(shoeCurrent===shoes.length-1&&i===0))o.classList.add('right'); });
+    const d=shoeDetails[shoeCurrent];
+    shoeFabric.textContent='Material: '+d.fabric; shoeCo2.textContent='CO₂ Emission: '+d.co2+' kg'; shoeBrand.textContent='Brand: '+d.brand;
+    visitedShoes.add(shoeCurrent); updateCounter();
+  }
+
+  // Arrow event listeners
   document.getElementById('top-leftArrow').addEventListener('click',()=>{ topCurrent=(topCurrent-1+tops.length)%tops.length; updateTops(); });
   document.getElementById('top-rightArrow').addEventListener('click',()=>{ topCurrent=(topCurrent+1)%tops.length; updateTops(); });
   document.getElementById('bottom-leftArrow').addEventListener('click',()=>{ bottomCurrent=(bottomCurrent-1+bottoms.length)%bottoms.length; updateBottoms(); });
   document.getElementById('bottom-rightArrow').addEventListener('click',()=>{ bottomCurrent=(bottomCurrent+1)%bottoms.length; updateBottoms(); });
+  // NEW Shoe arrows
+  document.getElementById('shoe-leftArrow').addEventListener('click',()=>{ shoeCurrent=(shoeCurrent-1+shoes.length)%shoes.length; updateShoes(); });
+  document.getElementById('shoe-rightArrow').addEventListener('click',()=>{ shoeCurrent=(shoeCurrent+1)%shoes.length; updateShoes(); });
 
-  document.getElementById('submit-btn').addEventListener('click',function(){
-    const modal=document.getElementById('submit-modal');
-    const content=document.getElementById('submit-modal-content');
-    modal.style.display='flex'; content.innerHTML='';
-
-    // Calculate wasted CO2
-    let wastedCO2=0;
-    topDetails.forEach((t,i)=>{ if(i!==topCurrent) wastedCO2+=parseInt(t.co2); });
-    bottomDetails.forEach((b,i)=>{ if(i!==bottomCurrent) wastedCO2+=parseInt(b.co2); });
-
-    const steps = [
-  `<div class="submit-sequence">What about the clothes you didn't choose?</div>`,
-  `<div class="submit-sequence">They produced <strong>${wastedCO2} kg CO₂ emissions</strong>!</div>`,
-  `<div class="submit-sequence">Fast fashion disproportionately harms marginalized communities.</div>`,
-  `<div class="submit-sequence">They produce the clothes and receive much of the waste.</div>`,
-  `<div class="submit-impact"><img src="assets/water.png" style="width:300px;height:200px;"><span class="submit-impact-icon">💧 Water polluted from factories</span></div>`,
-  `<div class="submit-impact"><img src="assets/heat.png" style="width:300px;height:200px;"><span class="submit-impact-icon">🔥 Heat and energy wasted in production</span></div>`,
-  `<div class="submit-impact"><img src="assets/trash.png" style="width:300px;height:200px;"><span class="submit-impact-icon">🗑️ Discarded clothes adding to waste</span></div>`,
-  `<div class="submit-sequence">Every choice counts. Think before you buy!</div>`
-];
-
-
-    let currentStep=0;
-    function showStep(){
-      content.innerHTML=steps[currentStep];
-      if(currentStep<steps.length-1){
-        const btn=document.createElement('button'); btn.className='continue-btn'; btn.textContent='Continue';
-        btn.onclick=function(){ currentStep++; showStep(); };
-        content.appendChild(btn);
-      } else {
-        const btn=document.createElement('button'); btn.className='close-btn'; btn.textContent='Close';
-        btn.onclick=function(){ modal.style.display='none'; };
-        content.appendChild(btn);
-      }
-    }
-    showStep();
-  });
-
-  updateTops(); updateBottoms();
+  updateTops(); updateBottoms(); updateShoes(); // Initialize all
 })();
 </script>
-
 </body>
 </html>
