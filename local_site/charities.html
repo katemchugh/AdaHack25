@@ -24,54 +24,243 @@
   </div>
 </nav>
 
-<main class="container">
+<<main class="container">
 
-<section class="card">
-  <h1>Charities</h1>
-  <p>Support organizations working toward ethical fashion, sustainability, and justice for garment workers.</p>
-  
-  <div class="list">
+  <!-- DONATION SIMULATOR -->
+  <section class="card" id="donation-sim">
+    <span class="badge">Interactive</span>
+    <h1>Donation Simulator</h1>
+    <p style="margin-top:-4px;color:var(--muted)">
+      Explore how different amounts could be used by each organisation. Figures are illustrative — edit the rates
+      in the code to match what partners report.
+    </p>
 
-    <div class="item">
-      <div class="icon">🧵</div>
-      <div>
-        <strong><a href="https://theor.org" target="_blank" rel="noopener">The OR Foundation</a></strong>
-        <p>Based in Ghana and the US, The OR Foundation works at the intersection of environmental justice, education, and fashion to end waste colonialism.</p>
-        <a class="btn" href="https://theor.org/donate" target="_blank" rel="noopener">Donate</a>
+    <div class="grid" style="margin-top:8px">
+      <!-- Controls -->
+      <div class="col-6">
+        <div class="list">
+          <div class="item">
+            <div class="icon">🏷️</div>
+            <div>
+              <label for="charitySelect"><strong>Choose an organisation</strong></label><br/>
+              <select id="charitySelect" class="btn" style="width:100%;justify-content:space-between">
+                <option value="or">The OR Foundation</option>
+                <option value="ccc">Clean Clothes Campaign</option>
+                <option value="fr">Fashion Revolution</option>
+                <option value="remake">Remake</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">💷</div>
+            <div>
+              <label for="amountInput"><strong>Donation amount (£)</strong></label>
+              <input id="amountInput" type="number" min="0" step="1" value="50"
+                     style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(0,0,0,.1)">
+              <input id="amountRange" type="range" min="0" max="1000" step="10" value="50"
+                     style="width:100%;margin-top:10px">
+              <div id="matchNote" class="badge" style="margin-top:8px;display:none">
+                Example: 1:1 match displayed up to £100
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icon">🔗</div>
+            <div>
+              <a id="donateBtn" class="btn" href="#" target="_blank" rel="noopener">Donate</a>
+              <div style="color:var(--muted);font-size:.9rem;margin-top:6px">
+                Opens the selected charity’s donation page in a new tab.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Impact panel -->
+      <div class="col-6">
+        <div class="card" style="background:linear-gradient(180deg,#ffffff,#f1f5f9)">
+          <h2 id="impactTitle">Estimated impact</h2>
+          <ul id="impactList" class="list"></ul>
+          <div id="finePrint" style="color:var(--muted);font-size:.9rem;margin-top:8px">
+            Demo estimates only. Adjust rates in <code>charityRates</code> below.
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="item">
-      <div class="icon">🧺</div>
-      <div>
-        <strong><a href="https://cleanclothes.org/" target="_blank" rel="noopener">Clean Clothes Campaign</a></strong>
-        <p>An alliance dedicated to improving working conditions and empowering garment workers worldwide.</p>
-        <a class="btn" href="https://cleanclothes.org/donate" target="_blank" rel="noopener">Donate</a>
+    <details style="margin-top:14px">
+      <summary class="btn">Show the underlying example rates</summary>
+      <div style="overflow:auto;margin-top:10px">
+        <table class="table" id="ratesTable">
+          <thead><tr><th>Organisation</th><th>Unit</th><th>£ per unit</th></tr></thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </div>
+    </details>
+  </section>
 
-    <div class="item">
-      <div class="icon">🌍</div>
-      <div>
-        <strong><a href="https://www.fashionrevolution.org/" target="_blank" rel="noopener">Fashion Revolution</a></strong>
-        <p>A global movement advocating for transparency, sustainability, and ethics in the fashion industry.</p>
-        <a class="btn" href="https://www.fashionrevolution.org/donate/" target="_blank" rel="noopener">Donate</a>
+  <!-- YOUR EXISTING LIST (kept as-is) -->
+  <section class="card" style="margin-top:20px">
+    <h2>Charities</h2>
+    <p>Support organizations working toward ethical fashion, sustainability, and justice for garment workers.</p>
+
+    <div class="list">
+
+      <div class="item">
+        <div class="icon">🧵</div>
+        <div>
+          <strong><a href="https://theor.org" target="_blank" rel="noopener">The OR Foundation</a></strong>
+          <p>Based in Ghana and the US, The OR Foundation works at the intersection of environmental justice, education, and fashion to end waste colonialism.</p>
+          <a class="btn" href="https://theor.org/donate" target="_blank" rel="noopener">Donate</a>
+        </div>
       </div>
-    </div>
 
-    <div class="item">
-      <div class="icon">👗</div>
-      <div>
-        <strong><a href="https://remake.world/" target="_blank" rel="noopener">Remake</a></strong>
-        <p>Non-profit using storytelling and advocacy to drive awareness and change toward sustainable, human-centered fashion.</p>
-        <a class="btn" href="https://remake.world/donations-page/" target="_blank" rel="noopener">Donate</a>
+      <div class="item">
+        <div class="icon">🧺</div>
+        <div>
+          <strong><a href="https://cleanclothes.org/" target="_blank" rel="noopener">Clean Clothes Campaign</a></strong>
+          <p>An alliance dedicated to improving working conditions and empowering garment workers worldwide.</p>
+          <a class="btn" href="https://cleanclothes.org/donate" target="_blank" rel="noopener">Donate</a>
+        </div>
       </div>
-    </div>
 
-  </div>
-</section>
+      <div class="item">
+        <div class="icon">🌍</div>
+        <div>
+          <strong><a href="https://www.fashionrevolution.org/" target="_blank" rel="noopener">Fashion Revolution</a></strong>
+          <p>A global movement advocating for transparency, sustainability, and ethics in the fashion industry.</p>
+          <a class="btn" href="https://www.fashionrevolution.org/donate/" target="_blank" rel="noopener">Donate</a>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="icon">👗</div>
+        <div>
+          <strong><a href="https://remake.world/" target="_blank" rel="noopener">Remake</a></strong>
+          <p>Non-profit using storytelling and advocacy to drive awareness and change toward sustainable, human-centered fashion.</p>
+          <a class="btn" href="https://remake.world/donations-page/" target="_blank" rel="noopener">Donate</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    // --- EDIT THESE RATES TO MATCH WHAT PARTNERS REPORT (illustrative defaults) ---
+    const charityRates = {
+      or: {
+        name: 'The OR Foundation',
+        emoji: '🧵',
+        donate: 'https://theor.org/donate',
+        items: [
+          { label: 'kg of textile waste sorted/diverted', unitCost: 1.5 },
+          { label: 'worker safety kit(s) (gloves/masks)', unitCost: 10  },
+          { label: 'repair workshop hour(s) funded',      unitCost: 15  }
+        ]
+      },
+      ccc: {
+        name: 'Clean Clothes Campaign',
+        emoji: '🧺',
+        donate: 'https://cleanclothes.org/donate',
+        items: [
+          { label: 'campaign leaflet pack(s)',            unitCost: 4   },
+          { label: 'investigation/interpreter hour(s)',   unitCost: 25  },
+          { label: 'worker training session seat(s)',     unitCost: 12  }
+        ]
+      },
+      fr: {
+        name: 'Fashion Revolution',
+        emoji: '🌍',
+        donate: 'https://www.fashionrevolution.org/donate/',
+        items: [
+          { label: 'educator toolkit(s) distributed',     unitCost: 8   },
+          { label: 'transparency research hour(s)',       unitCost: 35  },
+          { label: 'community event seat(s)',             unitCost: 6   }
+        ]
+      },
+      remake: {
+        name: 'Remake',
+        emoji: '👗',
+        donate: 'https://remake.world/donations-page/',
+        items: [
+          { label: 'advocacy training seat(s)',           unitCost: 20  },
+          { label: 'campaign content piece(s) produced',  unitCost: 40  },
+          { label: 'policy outreach call(s)',             unitCost: 10  }
+        ]
+      }
+    };
+    // ----------------------------------------------------------------------
+
+    const gbp = v => new Intl.NumberFormat('en-GB', {
+      style: 'currency', currency: 'GBP', maximumFractionDigits: 0
+    }).format(v);
+
+    const sel   = document.getElementById('charitySelect');
+    const num   = document.getElementById('amountInput');
+    const range = document.getElementById('amountRange');
+    const title = document.getElementById('impactTitle');
+    const list  = document.getElementById('impactList');
+    const ratesTbody = document.querySelector('#ratesTable tbody');
+    const matchNote  = document.getElementById('matchNote');
+    const donateBtn  = document.getElementById('donateBtn');
+
+    // Populate the rates table for transparency
+    function renderRates(){
+      ratesTbody.innerHTML = '';
+      for(const key of Object.keys(charityRates)){
+        const { name, items } = charityRates[key];
+        for(const it of items){
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${name}</td><td>${it.label}</td><td>£${it.unitCost}</td>`;
+          ratesTbody.appendChild(tr);
+        }
+      }
+    }
+
+    function sync(src){
+      if(src === num)   range.value = num.value || 0;
+      if(src === range) num.value   = range.value;
+      render();
+    }
+    num.addEventListener('input',   ()=>sync(num));
+    range.addEventListener('input', ()=>sync(range));
+    sel.addEventListener('change',  render);
+
+    function render(){
+      const key = sel.value;
+      const cfg = charityRates[key];
+      const amt = Math.max(0, parseFloat(num.value) || 0);
+
+      title.textContent = `${cfg.emoji} With ${gbp(amt)} to ${cfg.name}, you could fund…`;
+
+      list.innerHTML = cfg.items.map(it=>{
+        const units = Math.floor(amt / it.unitCost);
+        return `<li class="item">
+                  <div class="icon">✔️</div>
+                  <div><strong>${units.toLocaleString()}</strong> ${it.label}
+                    <span style="color:var(--muted)">(@ £${it.unitCost} each)</span>
+                  </div>
+                </li>`;
+      }).join('');
+
+      // Example matching notice: show up to £100
+      matchNote.style.display = (amt>0 && amt<=100) ? 'inline-block' : 'none';
+
+      // Update donate button
+      donateBtn.href = cfg.donate;
+      donateBtn.textContent = `Donate to ${cfg.name}`;
+    }
+
+    renderRates();
+    render();
+  })();
+  </script>
 
 </main>
+
 <footer class="container">© <span id="year"></span> • Made locally</footer>
 <script src="assets/script.js"></script>
 </body>
