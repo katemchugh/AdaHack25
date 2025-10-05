@@ -3,79 +3,337 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LocalSite — Games</title>
-<link rel="stylesheet" href="assets/style.css"/>
+<title>Dress Up Carousel - Tops & Bottoms</title>
+<style>
+  /* General styling */
+  body {
+    background:#f0f2f5;
+    margin:0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+  }
+
+  header {
+    width:100%;
+    background:#4cc9f0;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-size:1.8rem;
+    font-weight:bold;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  main {
+    display:flex;
+    gap:30px;
+    margin:30px 0;
+    align-items:flex-start;
+  }
+
+  /* Info panel */
+  #info-panel {
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    width:220px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+  }
+
+  #info-panel h2 {
+    margin-top:0;
+    font-size:1.2rem;
+    color:#333;
+  }
+
+  #info-panel p {
+    margin:5px 0;
+    font-size:0.95rem;
+    color:#555;
+  }
+
+  /* Stage container */
+  #dressup-wrapper {
+    position:relative;
+    display:inline-block;
+  }
+
+  #dressup-stage {
+    position:relative;
+    width:300px;
+    height:400px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  #base {
+    position:absolute;
+    width:100%;
+    z-index:1;
+  }
+
+  .outfit {
+    position:absolute;
+    width:100%;
+    opacity:0;
+    transform:scale(0.9);
+    transition:all 0.4s ease;
+    z-index:2;
+  }
+
+  .outfit.active {
+    opacity:1;
+    transform:scale(1);
+    z-index:3;
+  }
+
+  .outfit.left {
+    opacity:0.4;
+    transform:translateX(-40%) scale(0.9);
+  }
+
+  .outfit.right {
+    opacity:0.4;
+    transform:translateX(40%) scale(0.9);
+  }
+
+  /* Arrows */
+  .arrow {
+    position:absolute;
+    background:#4cc9f0;
+    color:white;
+    border:none;
+    border-radius:50%;
+    width:40px;
+    height:40px;
+    font-size:20px;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition: background 0.2s, transform 0.2s;
+    z-index:5;
+  }
+
+  .arrow:hover {
+    background:#3ab3d9;
+    transform:scale(1.1);
+  }
+
+  /* Top arrows flush outside stage */
+  #top-leftArrow { top:35%; left:-25px; }
+  #top-rightArrow { top:35%; right:-25px; }
+
+  /* Bottom arrows flush outside stage */
+  #bottom-leftArrow { top:65%; left:-25px; }
+  #bottom-rightArrow { top:65%; right:-25px; }
+
+  /* Submit button */
+  #submit-btn {
+    margin-top:20px;
+    padding:12px 24px;
+    background:#4cc9f0;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:1rem;
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+    align-self:flex-end;
+    transition:background 0.2s, transform 0.2s;
+  }
+
+  #submit-btn:hover {
+    background:#3ab3d9;
+    transform:scale(1.05);
+  }
+</style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="brand"><span class="dot"></span> LocalSite</div>
-    <div class="menu"><a href="index.html">Home</a><a href="games.html" style="background:rgba(76,201,240,.22)">Games</a><a href="data.html">Data</a><a href="articles.html">Articles</a><a href="charities.html">Charities</a></div>
-  </div>
-</nav>
+<header>Dress Up Carousel</header>
 
-<main class="container">
+<main>
+  <!-- Info panel -->
+  <!-- <div id="info-panel">
+    <h2>Top Details</h2>
+    <p id="fabric">Fabric: Cotton</p>
+    <p id="co2">CO₂ Emission: 12 kg</p>
+    <p id="brand">Brand: EcoWear</p>
 
-<section class="card">
-  <h1>Games</h1>
-  <p>Here’s a tiny, dependency‑free Tic‑Tac‑Toe to get you started.</p>
-  <div id="ttt" class="card" style="display:grid;grid-template-columns:repeat(3,100px);gap:10px;justify-content:center;margin:12px auto;background:transparent;border:none;box-shadow:none">
+    <h2>Bottom Details</h2>
+    <p id="bottom-fabric">Fabric: Denim</p>
+    <p id="bottom-co2">CO₂ Emission: 20 kg</p>
+    <p id="bottom-brand">Brand: BlueJeans</p>
+  </div> -->
+    <!-- Info Cards Container -->
+<div id="info-cards" style="display:flex; flex-direction:column; gap:15px; align-items:center; margin-top:0px;">
+
+  <!-- Top Details Card -->
+  <div class="info-card" style="background:white; padding:15px 20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); width:250px;">
+    <h2>Top Details</h2>
+    <p id="fabric">Fabric: Cotton</p>
+    <p id="co2">CO₂ Emission: 12 kg</p>
+    <p id="brand">Brand: EcoWear</p>
   </div>
-  <div style="text-align:center;margin-top:10px">
-    <button id="resetBtn" class="btn">Reset</button>
-    <span id="status" class="badge" style="margin-left:8px">Your turn: X</span>
+
+  <!-- Bottom Details Card -->
+  <div class="info-card" style="background:white; padding:15px 20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); width:250px;">
+    <h2>Bottom Details</h2>
+    <p id="bottom-fabric">Fabric: Denim</p>
+    <p id="bottom-co2">CO₂ Emission: 20 kg</p>
+    <p id="bottom-brand">Brand: BlueJeans</p>
   </div>
-</section>
+
+</div>
+
+  <!-- Doll stage -->
+  <div id="dressup-wrapper">
+    <div id="dressup-stage">
+      <img id="base" src="assets/base1.PNG" alt="Doll base">
+
+      <!-- Bottom outfits carousel -->
+      <img class="outfit bottom" src="assets/bottom1.PNG" alt="Bottom 1">
+      <img class="outfit bottom" src="assets/bottom2.PNG" alt="Bottom 2">
+      <img class="outfit bottom" src="assets/bottom3.PNG" alt="Bottom 3">
+
+      <!-- Top outfits carousel -->
+      <img class="outfit top" src="assets/top1.PNG" alt="Top 1">
+      <img class="outfit top" src="assets/top2.PNG" alt="Top 2">
+      <img class="outfit top" src="assets/top3.PNG" alt="Top 3">
+
+      
+    </div>
+
+    <!-- Top arrows -->
+    <button class="arrow" id="top-leftArrow">⟨</button>
+    <button class="arrow" id="top-rightArrow">⟩</button>
+
+    <!-- Bottom arrows -->
+    <button class="arrow" id="bottom-leftArrow">⟨</button>
+    <button class="arrow" id="bottom-rightArrow">⟩</button>
+  </div>
+</main>
+
+<button id="submit-btn">Submit</button>
+
 <script>
 (function(){
-  const board = Array(9).fill(null);
-  let xTurn = true;
-  const winLines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-  const root = document.getElementById('ttt');
-  const status = document.getElementById('status');
-  const resetBtn = document.getElementById('resetBtn');
+  // --- TOPS CAROUSEL ---
+  const tops = Array.from(document.querySelectorAll('.outfit.top'));
+  let topCurrent = 0;
 
-  function draw(){
-    root.innerHTML = '';
-    for(let i=0;i<9;i++){
-      const cell = document.createElement('button');
-      cell.className = 'card';
-      cell.style.width='100px'; cell.style.height='100px';
-      cell.style.fontSize='2rem'; cell.style.display='grid'; cell.style.placeItems='center';
-      cell.style.cursor='pointer';
-      cell.textContent = board[i] || '';
-      cell.addEventListener('click',()=>move(i));
-      root.appendChild(cell);
-    }
+  const fabric = document.getElementById('fabric');
+  const co2 = document.getElementById('co2');
+  const brand = document.getElementById('brand');
+
+  const topDetails = [
+    {fabric:'Cotton', co2:'12 kg', brand:'EcoWear'},
+    {fabric:'Silk', co2:'8 kg', brand:'LuxurySilk'},
+    {fabric:'Polyester', co2:'15 kg', brand:'FastFashion'}
+  ];
+
+  // Track visited tops
+  const visitedTops = new Set();
+
+  // --- BOTTOMS CAROUSEL ---
+  const bottoms = Array.from(document.querySelectorAll('.outfit.bottom'));
+  let bottomCurrent = 0;
+
+  const bottomFabric = document.getElementById('bottom-fabric');
+  const bottomCo2 = document.getElementById('bottom-co2');
+  const bottomBrand = document.getElementById('bottom-brand');
+
+  const bottomDetails = [
+    {fabric:'Denim', co2:'20 kg', brand:'BlueJeans'},
+    {fabric:'Cotton', co2:'15 kg', brand:'EcoWear'},
+    {fabric:'Leather', co2:'30 kg', brand:'LeatherCo'}
+  ];
+
+  // Track visited bottoms
+  const visitedBottoms = new Set();
+
+  // --- COUNTER DISPLAY ---
+  const counterDisplay = document.createElement('p');
+  counterDisplay.style.fontWeight = 'bold';
+  counterDisplay.style.textAlign = 'center';
+  counterDisplay.style.marginTop = '20px';
+  counterDisplay.textContent = 'Clothing articles tried on: 0';
+  document.body.insertBefore(counterDisplay, document.getElementById('submit-btn'));
+
+  function updateCounter() {
+    const totalTried = visitedTops.size + visitedBottoms.size;
+    counterDisplay.textContent = `Clothing articles tried on: ${totalTried}`;
   }
-  function winner(){
-    for(const [a,b,c] of winLines){
-      if(board[a] && board[a]===board[b] && board[a]===board[c]) return board[a];
-    }
-    if(board.every(Boolean)) return 'draw';
-    return null;
+
+  function updateTops() {
+    tops.forEach((o,i)=>{
+      o.classList.remove('active','left','right');
+      if(i===topCurrent) o.classList.add('active');
+      else if(i===topCurrent-1 || (topCurrent===0 && i===tops.length-1)) o.classList.add('left');
+      else if(i===topCurrent+1 || (topCurrent===tops.length-1 && i===0)) o.classList.add('right');
+    });
+
+    const detail = topDetails[topCurrent];
+    fabric.textContent = 'Fabric: ' + detail.fabric;
+    co2.textContent = 'CO₂ Emission: ' + detail.co2;
+    brand.textContent = 'Brand: ' + detail.brand;
+
+    visitedTops.add(topCurrent);
+    updateCounter();
   }
-  function move(i){
-    if(board[i] || winner()) return;
-    board[i] = xTurn ? 'X' : 'O';
-    xTurn = !xTurn;
-    const w = winner();
-    if(w==='draw') status.textContent = 'It\'s a draw!';
-    else if(w) status.textContent = `Winner: ${w}`;
-    else status.textContent = `Your turn: ${xTurn?'X':'O'}`;
-    draw();
+
+  function updateBottoms() {
+    bottoms.forEach((o,i)=>{
+      o.classList.remove('active','left','right');
+      if(i===bottomCurrent) o.classList.add('active');
+      else if(i===bottomCurrent-1 || (bottomCurrent===0 && i===bottoms.length-1)) o.classList.add('left');
+      else if(i===bottomCurrent+1 || (bottomCurrent===bottoms.length-1 && i===0)) o.classList.add('right');
+    });
+
+    const detail = bottomDetails[bottomCurrent];
+    bottomFabric.textContent = 'Fabric: ' + detail.fabric;
+    bottomCo2.textContent = 'CO₂ Emission: ' + detail.co2;
+    bottomBrand.textContent = 'Brand: ' + detail.brand;
+
+    visitedBottoms.add(bottomCurrent);
+    updateCounter();
   }
-  resetBtn.addEventListener('click',()=>{
-    for(let i=0;i<9;i++) board[i]=null;
-    xTurn = true; status.textContent='Your turn: X'; draw();
+
+  document.getElementById('top-leftArrow').addEventListener('click', ()=>{
+    topCurrent = (topCurrent -1 + tops.length) % tops.length;
+    updateTops();
   });
-  draw();
+  document.getElementById('top-rightArrow').addEventListener('click', ()=>{
+    topCurrent = (topCurrent +1) % tops.length;
+    updateTops();
+  });
+
+  document.getElementById('bottom-leftArrow').addEventListener('click', ()=>{
+    bottomCurrent = (bottomCurrent -1 + bottoms.length) % bottoms.length;
+    updateBottoms();
+  });
+  document.getElementById('bottom-rightArrow').addEventListener('click', ()=>{
+    bottomCurrent = (bottomCurrent +1) % bottoms.length;
+    updateBottoms();
+  });
+
+  // Initial render
+  updateTops();
+  updateBottoms();
 })();
 </script>
 
-</main>
-<footer class="container">© <span id="year"></span> • Made locally</footer>
-<script src="assets/script.js"></script>
 </body>
 </html>
