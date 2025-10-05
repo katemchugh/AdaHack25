@@ -20,9 +20,215 @@
 
 <main class="container">
 
+<section class="card" id="waste-globe">
+  <h1>Global Textile Waste Flows</h1>
+  <p style="margin-top:-4px;color:var(--muted)">
+    Hover a highlighted country to see where its exported textile waste goes. Drag to rotate the globe.
+  </p>
+
+  <div style="display:grid;grid-template-columns:1fr;gap:12px">
+    <canvas id="globe" style="width:100%;max-width:900px;height:520px;margin:auto;display:block"></canvas>
+    <div id="globe-legend" style="text-align:center;color:var(--muted);font-size:.9rem">
+      <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:rgba(14,116,144,.9);vertical-align:middle;margin-right:6px"></span>
+      Source countries (hover me) &middot;
+      <span style="display:inline-block;width:22px;height:2px;background:rgba(14,116,144,.9);vertical-align:middle;margin:0 6px 3px 6px"></span>
+      Arrows scale by kg
+    </div>
+    <div id="missingBox" class="badge" style="display:none;justify-self:center"></div>
+  </div>
+</section>
+
+<!-- Globe script (loads assets/flows_top300.json + assets/centroids.json) -->
+<script>
+(function(){
+  // ---------- math helpers ----------
+  const TAU = Math.PI*2, d2r = d=>d*Math.PI/180, r2d = r=>r*180/Math.PI, clamp = (x,a,b)=>Math.max(a,Math.min(b,x));
+  function llToXYZ(lat, lon){ const φ=d2r(lat), λ=d2r(lon); return [Math.cos(φ)*Math.cos(λ), Math.cos(φ)*Math.sin(λ), Math.sin(φ)]; }
+  function xyzToLL(x,y,z){ return { lat:r2d(Math.asin(z)), lon:r2d(Math.atan2(y,x)) }; }
+  function slerp(a,b,t){ const dot = clamp(a[0]*b[0]+a[1]*b[1]+a[2]*b[2],-1,1); const w=Math.acos(dot); if(w<1e-6) return a.slice(); const s1=Math.sin((1-t)*w)/Math.sin(w), s2=Math.sin(t*w)/Math.sin(w); return [a[0]*s1+b[0]*s2, a[1]*s1+b[1]*s2, a[2]*s1+b[2]*s2]; }
+
+  function project(lat, lon, st){
+    const φ=d2r(lat), λ=d2r(lon), φ0=st.lat0, λ0=st.lon0, dλ=λ-λ0;
+    const cosφ=Math.cos(φ), sinφ=Math.sin(φ), cosφ0=Math.cos(φ0), sinφ0=Math.sin(φ0), cosdλ=Math.cos(dλ), sindλ=Math.sin(dλ);
+    const x = st.R * cosφ * sindλ;
+    const y = st.R * (cosφ0* sinφ - sinφ0* cosφ * cosdλ);
+    const cosc = sinφ0* sinφ + cosφ0* cosφ * cosdλ;
+    return { x: st.cx + x, y: st.cy + y, visible: cosc > 0.0001 };
+  }
+
+  // ---------- canvas + state ----------
+  const canvas = document.getElementById('globe'), ctx = canvas.getContext('2d');
+  const st = { w:300,h:300,R:140,cx:150,cy:150, lat0:d2r(15), lon0:d2r(-20), dragging:false, hoverISO:null, data:null, maxKg:1 };
+  function resize(){
+    const dpr=window.devicePixelRatio||1, cssW=Math.min(900, canvas.clientWidth||900), cssH=canvas.clientHeight||520;
+    canvas.width=cssW*dpr; canvas.height=cssH*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    st.w=cssW; st.h=cssH; st.cx=cssW/2; st.cy=cssH/2; st.R=Math.min(cssW,cssH)*0.42; draw();
+  }
+  window.addEventListener('resize', resize);
+
+  // ---------- interaction ----------
+  canvas.addEventListener('mousedown', e=>{ st.dragging=true; st._start={x:e.offsetX,y:e.offsetY, lat0:st.lat0, lon0:st.lon0}; });
+  window.addEventListener('mouseup', ()=>st.dragging=false);
+  window.addEventListener('mousemove', e=>{
+    const {offsetX:x, offsetY:y} = e;
+    if(st.dragging){
+      const dx = x - st._start.x, dy = y - st._start.y;
+      st.lon0 = st._start.lon0 + dx / st.R;
+      st.lat0 = clamp(st._start.lat0 - dy / st.R, d2r(-85), d2r(85));
+      draw();
+    }else{
+      st.hoverISO = null;
+      if(st && st.data){
+        const sources = st.data.flows.map(f=>f.from);
+        let best={iso:null,dist:1e9};
+        for(const iso of sources){
+          const n = st.data.nodes[iso]; if(!n || n.lat==null) continue;
+          const p = project(n.lat, n.lon, st); if(!p.visible) continue;
+          const d = Math.hypot(p.x - x, p.y - y); if(d < best.dist) best={iso,dist:d};
+        }
+        if(best.iso && best.dist<=12) st.hoverISO = best.iso;
+        draw();
+      }
+    }
+  });
+  canvas.addEventListener('mouseleave', ()=>{ st.hoverISO=null; draw(); });
+
+  // ---------- drawing ----------
+  function drawSphere(){
+    const grd=ctx.createRadialGradient(st.cx-st.R*0.3, st.cy-st.R*0.3, st.R*0.1, st.cx, st.cy, st.R);
+    grd.addColorStop(0,'#dff3f2'); grd.addColorStop(1,'#b6d7e2'); ctx.fillStyle=grd;
+    ctx.beginPath(); ctx.arc(st.cx, st.cy, st.R, 0, TAU); ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.15)'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(st.cx, st.cy, st.R, 0, TAU); ctx.stroke();
+  }
+  function drawGraticule(){
+    ctx.save(); ctx.strokeStyle='rgba(0,0,0,.10)'; ctx.lineWidth=1; ctx.setLineDash([4,6]);
+    for(let lon=-150; lon<=180; lon+=30){ let first=true; ctx.beginPath();
+      for(let lat=-89; lat<=89; lat+=2){ const p=project(lat,lon,st); if(!p.visible){ first=true; continue; }
+        if(first){ ctx.moveTo(p.x,p.y); first=false; } else ctx.lineTo(p.x,p.y);
+      } ctx.stroke();
+    }
+    for(let lat=-60; lat<=60; lat+=30){ let first=true; ctx.beginPath();
+      for(let lon=-179; lon<=180; lon+=2){ const p=project(lat,lon,st); if(!p.visible){ first=true; continue; }
+        if(first){ ctx.moveTo(p.x,p.y); first=false; } else ctx.lineTo(p.x,p.y);
+      } ctx.stroke();
+    }
+    ctx.setLineDash([]); ctx.restore();
+  }
+  function drawMarkers(){
+    if(!st.data) return;
+    const sources = new Set(st.data.flows.map(f=>f.from));
+    for(const iso of sources){
+      const n = st.data.nodes[iso]; if(!n || n.lat==null) continue;
+      const p = project(n.lat,n.lon,st); if(!p.visible) continue;
+      const r = iso===st.hoverISO ? 5.5 : 4;
+      ctx.fillStyle = iso===st.hoverISO ? 'rgba(14,116,144,1)' : 'rgba(14,116,144,.9)';
+      ctx.strokeStyle='rgba(255,255,255,.85)'; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(p.x,p.y,r,0,TAU); ctx.fill(); ctx.stroke();
+    }
+  }
+  function drawFlows(){
+    if(!st.data || !st.hoverISO) return;
+    const src = st.data.nodes[st.hoverISO]; if(!src || src.lat==null) return;
+    const rec = st.data.flows.find(f=>f.from===st.hoverISO); if(!rec) return;
+    const psrc = project(src.lat,src.lon,st);
+    const total = rec.to.reduce((s,d)=>s+(d.kg||0),0);
+    ctx.fillStyle='rgba(0,0,0,.75)'; ctx.font='14px system-ui,-apple-system,Segoe UI,Roboto,sans-serif'; ctx.textBaseline='top';
+    const label = `${src.name||st.hoverISO} — ${formatKg(total)}`, tw=ctx.measureText(label).width+12;
+    ctx.fillRect(psrc.x+8, psrc.y+8, tw, 22); ctx.fillStyle='#fff'; ctx.fillText(label, psrc.x+14, psrc.y+11);
+
+    const srcXYZ = llToXYZ(src.lat, src.lon);
+    for(const d of rec.to){
+      const dst = st.data.nodes[d.iso]; if(!dst || dst.lat==null) continue;
+      const dstXYZ = llToXYZ(dst.lat, dst.lon);
+      const steps = 72; let prev=null, started=false;
+      const w = 1 + 3 * (Math.log10((d.kg||1)) / Math.log10((st.maxKg||1))); ctx.lineWidth = clamp(w,1.2,6);
+      ctx.strokeStyle='rgba(14,116,144,.95)'; ctx.beginPath();
+      for(let i=0;i<=steps;i++){
+        const t=i/steps, P=slerp(srcXYZ,dstXYZ,t), ll=xyzToLL(P[0],P[1],P[2]), pr=project(ll.lat,ll.lon,st);
+        if(!pr.visible){ prev=null; continue; }
+        if(!prev){ ctx.moveTo(pr.x,pr.y); prev=pr; started=true; } else { ctx.lineTo(pr.x,pr.y); prev=pr; }
+      }
+      ctx.stroke();
+      const prDst = project(dst.lat,dst.lon,st);
+      if(prDst.visible && started){
+        drawArrowHead(prev, prDst);
+        ctx.fillStyle='rgba(14,116,144,1)'; ctx.beginPath(); ctx.arc(prDst.x,prDst.y,3.5,0,TAU); ctx.fill();
+        ctx.fillStyle='rgba(0,0,0,.75)'; const tlabel=`${dst.name||d.iso}: ${formatKg(d.kg)}`, tw2=ctx.measureText(tlabel).width+10;
+        ctx.fillRect(prDst.x+8, prDst.y-18, tw2, 18); ctx.fillStyle='#fff'; ctx.fillText(tlabel, prDst.x+12, prDst.y-16);
+      }
+    }
+    function drawArrowHead(p1,p2){ const ang=Math.atan2(p2.y-p1.y,p2.x-p1.x), size=8+ctx.lineWidth;
+      ctx.fillStyle='rgba(14,116,144,1)'; ctx.beginPath(); ctx.moveTo(p2.x,p2.y);
+      ctx.lineTo(p2.x - size*Math.cos(ang-0.4), p2.y - size*Math.sin(ang-0.4));
+      ctx.lineTo(p2.x - size*Math.cos(ang+0.4), p2.y - size*Math.sin(ang+0.4));
+      ctx.closePath(); ctx.fill();
+    }
+  }
+  function formatKg(n){ if(!n) return '0 kg'; const a=Math.abs(n);
+    if(a>=1e9) return (n/1e9).toFixed(2)+' bn kg';
+    if(a>=1e6) return (n/1e6).toFixed(2)+' m kg';
+    if(a>=1e3) return (n/1e3).toFixed(1)+' k kg';
+    return n.toLocaleString()+' kg';
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.save(); ctx.beginPath(); ctx.arc(st.cx, st.cy, st.R, 0, TAU); ctx.clip();
+    drawSphere(); drawGraticule(); ctx.restore();
+    drawMarkers(); drawFlows();
+  }
+
+  // ---------- load your data ----------
+  async function load(){
+    try{
+      const [flowsRes, centRes] = await Promise.all([
+        fetch('assets/flows_top300.json', {cache:'no-store'}),
+        fetch('assets/centroids.json', {cache:'no-store'})
+      ]);
+      const flowsJson = await flowsRes.json();
+      const centroids = await centRes.json();
+
+      // Merge: flowsJson.nodes has names; centroids adds lat/lon (and can override name)
+      const nodes = {};
+      for(const iso of Object.keys(flowsJson.nodes)){
+        const base = flowsJson.nodes[iso]||{};
+        const c = centroids[iso]||{};
+        nodes[iso] = { name: c.name || base.name || iso, lat: c.lat ?? null, lon: c.lon ?? null };
+      }
+      st.data = { nodes, flows: flowsJson.flows };
+
+      // maxKg for stroke scaling
+      let maxKg = 1;
+      for(const f of st.data.flows){ for(const d of f.to){ if(d.kg>maxKg) maxKg = d.kg; } }
+      st.maxKg = maxKg;
+
+      // Show any missing coordinates to help you complete centroids.json
+      const missing = Object.entries(nodes).filter(([,v])=>v.lat==null || v.lon==null).map(([k,v])=>`${k} (${v.name||k})`);
+      const box = document.getElementById('missingBox');
+      if(missing.length){
+        box.style.display='inline-block';
+        box.textContent = `Add lat/lon for ${missing.length} ISO codes in assets/centroids.json (e.g., GBR, CHN, USA…).`;
+        box.title = missing.slice(0,50).join(', ') + (missing.length>50 ? '…' : '');
+      }else{
+        box.style.display='none';
+      }
+
+      resize(); // initial draw
+    }catch(e){
+      console.error(e);
+      const ctx2 = canvas.getContext('2d');
+      ctx2.font='16px system-ui,-apple-system,Segoe UI,Roboto,sans-serif';
+      ctx2.fillStyle='rgba(0,0,0,.7)';
+      ctx2.fillText('Could not load assets/flows_top300.json or assets/centroids.json', 16, 28);
+    }
+  }
+
+  load(); resize();
+})();
+</script>
+
 <section class="card">
   <h1>Data</h1>
-  <p>This page loads <code>data.json</code> and renders a sortable table (client‑side only).</p>
+  <p>This page loads <code>data.json</code> and renders a sortable table (client-side only).</p>
   <div style="overflow:auto">
     <table class="table" id="dataTable">
       <thead>
@@ -37,6 +243,8 @@
     </table>
   </div>
 </section>
+
+<!-- Existing table script -->
 <script>
 (async function(){
   const res = await fetch('assets/data.json');

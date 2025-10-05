@@ -1,0 +1,14 @@
+{
+  "GBR": { "name": "United Kingdom", "lat": 54.8,  "lon": -4.6 },
+  "GHA": { "name": "Ghana",           "lat": 7.95,  "lon": -1.03 },
+  "KEN": { "name": "Kenya",           "lat": -0.02, "lon": 37.90 },
+  "USA": { "name": "United States",   "lat": 39.8,  "lon": -98.6 },
+  "MYS": { "name": "Malaysia",        "lat": 4.20,  "lon": 102.3 },
+  "CHN": { "name": "China",           "lat": 35.9,  "lon": 104.2 },
+  "IND": { "name": "India",           "lat": 22.9,  "lon": 79.0 },
+  "CAN": { "name": "Canada",          "lat": 61.0,  "lon": -102.0 },
+  "ARE": { "name": "United Arab Emirates", "lat": 24.3, "lon": 54.3 },
+  "PHL": { "name": "Philippines",     "lat": 12.9,  "lon": 122.9 },
+  "TZA": { "name": "Tanzania",        "lat": -6.4,  "lon": 34.9 },
+  "GTM": { "name": "Guatemala",       "lat": 15.7,  "lon": -90.2 }
+}

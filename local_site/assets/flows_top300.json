@@ -1,0 +1,1881 @@
+{
+  "nodes": {
+    "CHN": {
+      "name": "China",
+      "lat": null,
+      "lon": null
+    },
+    "KEN": {
+      "name": "Kenya",
+      "lat": null,
+      "lon": null
+    },
+    "JPN": {
+      "name": "Japan",
+      "lat": null,
+      "lon": null
+    },
+    "MYS": {
+      "name": "Malaysia",
+      "lat": null,
+      "lon": null
+    },
+    "USA": {
+      "name": "USA",
+      "lat": null,
+      "lon": null
+    },
+    "GTM": {
+      "name": "Guatemala",
+      "lat": null,
+      "lon": null
+    },
+    "PHL": {
+      "name": "Philippines",
+      "lat": null,
+      "lon": null
+    },
+    "GBR": {
+      "name": "United Kingdom",
+      "lat": null,
+      "lon": null
+    },
+    "ARE": {
+      "name": "United Arab Emirates",
+      "lat": null,
+      "lon": null
+    },
+    "TZA": {
+      "name": "United Rep. of Tanzania",
+      "lat": null,
+      "lon": null
+    },
+    "IND": {
+      "name": "India",
+      "lat": null,
+      "lon": null
+    },
+    "AGO": {
+      "name": "Angola",
+      "lat": null,
+      "lon": null
+    },
+    "KOR": {
+      "name": "Rep. of Korea",
+      "lat": null,
+      "lon": null
+    },
+    "CAN": {
+      "name": "Canada",
+      "lat": null,
+      "lon": null
+    },
+    "PAK": {
+      "name": "Pakistan",
+      "lat": null,
+      "lon": null
+    },
+    "AUS": {
+      "name": "Australia",
+      "lat": null,
+      "lon": null
+    },
+    "DEU": {
+      "name": "Germany",
+      "lat": null,
+      "lon": null
+    },
+    "NLD": {
+      "name": "Netherlands",
+      "lat": null,
+      "lon": null
+    },
+    "CHL": {
+      "name": "Chile",
+      "lat": null,
+      "lon": null
+    },
+    "POL": {
+      "name": "Poland",
+      "lat": null,
+      "lon": null
+    },
+    "NGA": {
+      "name": "Nigeria",
+      "lat": null,
+      "lon": null
+    },
+    "GHA": {
+      "name": "Ghana",
+      "lat": null,
+      "lon": null
+    },
+    "MOZ": {
+      "name": "Mozambique",
+      "lat": null,
+      "lon": null
+    },
+    "ESP": {
+      "name": "Spain",
+      "lat": null,
+      "lon": null
+    },
+    "MDG": {
+      "name": "Madagascar",
+      "lat": null,
+      "lon": null
+    },
+    "HND": {
+      "name": "Honduras",
+      "lat": null,
+      "lon": null
+    },
+    "UKR": {
+      "name": "Ukraine",
+      "lat": null,
+      "lon": null
+    },
+    "ITA": {
+      "name": "Italy",
+      "lat": null,
+      "lon": null
+    },
+    "TUN": {
+      "name": "Tunisia",
+      "lat": null,
+      "lon": null
+    },
+    "TUR": {
+      "name": "T\u00fcrkiye",
+      "lat": null,
+      "lon": null
+    },
+    "THA": {
+      "name": "Thailand",
+      "lat": null,
+      "lon": null
+    },
+    "MAR": {
+      "name": "Morocco",
+      "lat": null,
+      "lon": null
+    },
+    "MEX": {
+      "name": "Mexico",
+      "lat": null,
+      "lon": null
+    },
+    "DOM": {
+      "name": "Dominican Rep.",
+      "lat": null,
+      "lon": null
+    },
+    "FRA": {
+      "name": "France",
+      "lat": null,
+      "lon": null
+    },
+    "SAU": {
+      "name": "Saudi Arabia",
+      "lat": null,
+      "lon": null
+    },
+    "BEN": {
+      "name": "Benin",
+      "lat": null,
+      "lon": null
+    },
+    "NIC": {
+      "name": "Nicaragua",
+      "lat": null,
+      "lon": null
+    },
+    "COD": {
+      "name": "Dem. Rep. of the Congo",
+      "lat": null,
+      "lon": null
+    },
+    "BEL": {
+      "name": "Belgium",
+      "lat": null,
+      "lon": null
+    },
+    "IDN": {
+      "name": "Indonesia",
+      "lat": null,
+      "lon": null
+    },
+    "SLV": {
+      "name": "El Salvador",
+      "lat": null,
+      "lon": null
+    },
+    "IRQ": {
+      "name": "Iraq",
+      "lat": null,
+      "lon": null
+    },
+    "GIN": {
+      "name": "Guinea",
+      "lat": null,
+      "lon": null
+    },
+    "CMR": {
+      "name": "Cameroon",
+      "lat": null,
+      "lon": null
+    },
+    "SEN": {
+      "name": "Senegal",
+      "lat": null,
+      "lon": null
+    },
+    "CIV": {
+      "name": "C\u00f4te d'Ivoire",
+      "lat": null,
+      "lon": null
+    },
+    "HKG": {
+      "name": "China, Hong Kong SAR",
+      "lat": null,
+      "lon": null
+    },
+    "TGO": {
+      "name": "Togo",
+      "lat": null,
+      "lon": null
+    },
+    "KHM": {
+      "name": "Cambodia",
+      "lat": null,
+      "lon": null
+    },
+    "BGR": {
+      "name": "Bulgaria",
+      "lat": null,
+      "lon": null
+    },
+    "CHE": {
+      "name": "Switzerland",
+      "lat": null,
+      "lon": null
+    },
+    "ROU": {
+      "name": "Romania",
+      "lat": null,
+      "lon": null
+    },
+    "HUN": {
+      "name": "Hungary",
+      "lat": null,
+      "lon": null
+    },
+    "NOR": {
+      "name": "Norway",
+      "lat": null,
+      "lon": null
+    },
+    "PRT": {
+      "name": "Portugal",
+      "lat": null,
+      "lon": null
+    },
+    "AFG": {
+      "name": "Afghanistan",
+      "lat": null,
+      "lon": null
+    },
+    "VNM": {
+      "name": "Viet Nam",
+      "lat": null,
+      "lon": null
+    },
+    "SWE": {
+      "name": "Sweden",
+      "lat": null,
+      "lon": null
+    },
+    "LTU": {
+      "name": "Lithuania",
+      "lat": null,
+      "lon": null
+    },
+    "HTI": {
+      "name": "Haiti",
+      "lat": null,
+      "lon": null
+    },
+    "CZE": {
+      "name": "Czechia",
+      "lat": null,
+      "lon": null
+    },
+    "LBR": {
+      "name": "Liberia",
+      "lat": null,
+      "lon": null
+    },
+    "CRI": {
+      "name": "Costa Rica",
+      "lat": null,
+      "lon": null
+    },
+    "BLR": {
+      "name": "Belarus",
+      "lat": null,
+      "lon": null
+    },
+    "GRC": {
+      "name": "Greece",
+      "lat": null,
+      "lon": null
+    },
+    "SGP": {
+      "name": "Singapore",
+      "lat": null,
+      "lon": null
+    },
+    "FIN": {
+      "name": "Finland",
+      "lat": null,
+      "lon": null
+    },
+    "EST": {
+      "name": "Estonia",
+      "lat": null,
+      "lon": null
+    },
+    "BFA": {
+      "name": "Burkina Faso",
+      "lat": null,
+      "lon": null
+    },
+    "AUT": {
+      "name": "Austria",
+      "lat": null,
+      "lon": null
+    },
+    "MLI": {
+      "name": "Mali",
+      "lat": null,
+      "lon": null
+    },
+    "OMN": {
+      "name": "Oman",
+      "lat": null,
+      "lon": null
+    },
+    "NZL": {
+      "name": "New Zealand",
+      "lat": null,
+      "lon": null
+    },
+    "PNG": {
+      "name": "Papua New Guinea",
+      "lat": null,
+      "lon": null
+    },
+    "SVK": {
+      "name": "Slovakia",
+      "lat": null,
+      "lon": null
+    },
+    "UGA": {
+      "name": "Uganda",
+      "lat": null,
+      "lon": null
+    },
+    "DNK": {
+      "name": "Denmark",
+      "lat": null,
+      "lon": null
+    },
+    "PAN": {
+      "name": "Panama",
+      "lat": null,
+      "lon": null
+    },
+    "GAB": {
+      "name": "Gabon",
+      "lat": null,
+      "lon": null
+    },
+    "ISR": {
+      "name": "Israel",
+      "lat": null,
+      "lon": null
+    },
+    "LVA": {
+      "name": "Latvia",
+      "lat": null,
+      "lon": null
+    },
+    "KAZ": {
+      "name": "Kazakhstan",
+      "lat": null,
+      "lon": null
+    },
+    "COG": {
+      "name": "Congo",
+      "lat": null,
+      "lon": null
+    },
+    "ZAF": {
+      "name": "South Africa",
+      "lat": null,
+      "lon": null
+    },
+    "BGD": {
+      "name": "Bangladesh",
+      "lat": null,
+      "lon": null
+    },
+    "GEO": {
+      "name": "Georgia",
+      "lat": null,
+      "lon": null
+    },
+    "ALB": {
+      "name": "Albania",
+      "lat": null,
+      "lon": null
+    },
+    "IRL": {
+      "name": "Ireland",
+      "lat": null,
+      "lon": null
+    },
+    "SLE": {
+      "name": "Sierra Leone",
+      "lat": null,
+      "lon": null
+    },
+    "ZMB": {
+      "name": "Zambia",
+      "lat": null,
+      "lon": null
+    },
+    "LBN": {
+      "name": "Lebanon",
+      "lat": null,
+      "lon": null
+    },
+    "TLS": {
+      "name": "Timor-Leste",
+      "lat": null,
+      "lon": null
+    },
+    "SYR": {
+      "name": "Syria",
+      "lat": null,
+      "lon": null
+    },
+    "JOR": {
+      "name": "Jordan",
+      "lat": null,
+      "lon": null
+    },
+    "DJI": {
+      "name": "Djibouti",
+      "lat": null,
+      "lon": null
+    }
+  },
+  "flows": [
+    {
+      "from": "AUS",
+      "to": [
+        {
+          "iso": "ARE",
+          "kg": 69622829.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 25964375.0
+        },
+        {
+          "iso": "MYS",
+          "kg": 13663073.0
+        },
+        {
+          "iso": "PNG",
+          "kg": 3799729.9
+        }
+      ]
+    },
+    {
+      "from": "AUT",
+      "to": [
+        {
+          "iso": "ITA",
+          "kg": 7232940.0
+        },
+        {
+          "iso": "HUN",
+          "kg": 5918970.0
+        },
+        {
+          "iso": "DEU",
+          "kg": 3731540.0
+        },
+        {
+          "iso": "SVK",
+          "kg": 3378880.0
+        }
+      ]
+    },
+    {
+      "from": "BEL",
+      "to": [
+        {
+          "iso": "CMR",
+          "kg": 20896700.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 18825100.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 17320000.0
+        },
+        {
+          "iso": "OMN",
+          "kg": 6656600.0
+        },
+        {
+          "iso": "BEN",
+          "kg": 6013530.0
+        },
+        {
+          "iso": "GAB",
+          "kg": 5898730.0
+        },
+        {
+          "iso": "TUR",
+          "kg": 4958020.0
+        },
+        {
+          "iso": "IND",
+          "kg": 4393540.0
+        },
+        {
+          "iso": "NLD",
+          "kg": 3694100.0
+        }
+      ]
+    },
+    {
+      "from": "BGR",
+      "to": [
+        {
+          "iso": "PAK",
+          "kg": 14542861.0
+        },
+        {
+          "iso": "ROU",
+          "kg": 4235256.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 3616426.0
+        }
+      ]
+    },
+    {
+      "from": "CAN",
+      "to": [
+        {
+          "iso": "PAK",
+          "kg": 16018689.11
+        },
+        {
+          "iso": "TUN",
+          "kg": 8683198.45
+        },
+        {
+          "iso": "ARE",
+          "kg": 8424912.82
+        },
+        {
+          "iso": "NIC",
+          "kg": 8297683.96
+        },
+        {
+          "iso": "GHA",
+          "kg": 8132503.82
+        },
+        {
+          "iso": "IND",
+          "kg": 7565672.92
+        },
+        {
+          "iso": "KEN",
+          "kg": 5642783.67
+        },
+        {
+          "iso": "GBR",
+          "kg": 4426312.17
+        },
+        {
+          "iso": "USA",
+          "kg": 3546096.59
+        },
+        {
+          "iso": "THA",
+          "kg": 2995200.39
+        }
+      ]
+    },
+    {
+      "from": "CHE",
+      "to": [
+        {
+          "iso": "UKR",
+          "kg": 16613211.0
+        },
+        {
+          "iso": "ITA",
+          "kg": 9047946.61
+        },
+        {
+          "iso": "TUN",
+          "kg": 6550041.0
+        },
+        {
+          "iso": "LVA",
+          "kg": 5152864.0
+        },
+        {
+          "iso": "BEL",
+          "kg": 4584909.0
+        },
+        {
+          "iso": "POL",
+          "kg": 3105891.0
+        },
+        {
+          "iso": "DEU",
+          "kg": 3052462.47
+        },
+        {
+          "iso": "ROU",
+          "kg": 2790351.0
+        }
+      ]
+    },
+    {
+      "from": "CHN",
+      "to": [
+        {
+          "iso": "KEN",
+          "kg": 199046480.0
+        },
+        {
+          "iso": "PHL",
+          "kg": 108811890.0
+        },
+        {
+          "iso": "TZA",
+          "kg": 86737560.0
+        },
+        {
+          "iso": "AGO",
+          "kg": 79619140.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 63744450.0
+        },
+        {
+          "iso": "NGA",
+          "kg": 58266740.0
+        },
+        {
+          "iso": "MOZ",
+          "kg": 56305370.0
+        },
+        {
+          "iso": "MDG",
+          "kg": 46226560.0
+        },
+        {
+          "iso": "GHA",
+          "kg": 45164510.0
+        },
+        {
+          "iso": "IND",
+          "kg": 40638600.0
+        },
+        {
+          "iso": "THA",
+          "kg": 35389860.0
+        },
+        {
+          "iso": "BEN",
+          "kg": 27979660.0
+        },
+        {
+          "iso": "COD",
+          "kg": 26555297.0
+        },
+        {
+          "iso": "MYS",
+          "kg": 25201718.0
+        },
+        {
+          "iso": "IRQ",
+          "kg": 24088338.0
+        },
+        {
+          "iso": "GIN",
+          "kg": 20812643.0
+        },
+        {
+          "iso": "CMR",
+          "kg": 20442758.0
+        },
+        {
+          "iso": "SEN",
+          "kg": 18948430.0
+        },
+        {
+          "iso": "CIV",
+          "kg": 18831691.0
+        },
+        {
+          "iso": "KHM",
+          "kg": 16908618.0
+        },
+        {
+          "iso": "TGO",
+          "kg": 14868140.0
+        },
+        {
+          "iso": "VNM",
+          "kg": 11726568.0
+        },
+        {
+          "iso": "HTI",
+          "kg": 10793038.0
+        },
+        {
+          "iso": "SGP",
+          "kg": 8603163.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 6525630.0
+        },
+        {
+          "iso": "PNG",
+          "kg": 5959182.0
+        },
+        {
+          "iso": "CHL",
+          "kg": 5254707.0
+        },
+        {
+          "iso": "COG",
+          "kg": 4987810.0
+        },
+        {
+          "iso": "BGD",
+          "kg": 4681952.0
+        },
+        {
+          "iso": "MAR",
+          "kg": 4507517.0
+        },
+        {
+          "iso": "LBR",
+          "kg": 3983545.0
+        },
+        {
+          "iso": "SLE",
+          "kg": 3834867.0
+        },
+        {
+          "iso": "ZMB",
+          "kg": 3743873.0
+        },
+        {
+          "iso": "UGA",
+          "kg": 3641960.0
+        },
+        {
+          "iso": "TLS",
+          "kg": 3367051.0
+        },
+        {
+          "iso": "KOR",
+          "kg": 3287687.0
+        },
+        {
+          "iso": "AFG",
+          "kg": 3118932.0
+        }
+      ]
+    },
+    {
+      "from": "CZE",
+      "to": [
+        {
+          "iso": "ITA",
+          "kg": 6113190.0
+        },
+        {
+          "iso": "SVK",
+          "kg": 5843020.0
+        },
+        {
+          "iso": "DEU",
+          "kg": 3636390.0
+        },
+        {
+          "iso": "TZA",
+          "kg": 3255198.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 2853730.0
+        }
+      ]
+    },
+    {
+      "from": "DEU",
+      "to": [
+        {
+          "iso": "NLD",
+          "kg": 64247301.0
+        },
+        {
+          "iso": "POL",
+          "kg": 59819439.0
+        },
+        {
+          "iso": "TUR",
+          "kg": 36092538.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 32156797.0
+        },
+        {
+          "iso": "ITA",
+          "kg": 23119700.0
+        },
+        {
+          "iso": "BEL",
+          "kg": 18271003.0
+        },
+        {
+          "iso": "BGR",
+          "kg": 16681000.0
+        },
+        {
+          "iso": "TUN",
+          "kg": 16090000.0
+        },
+        {
+          "iso": "ROU",
+          "kg": 14922400.0
+        },
+        {
+          "iso": "HUN",
+          "kg": 14106000.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 13822600.0
+        },
+        {
+          "iso": "CZE",
+          "kg": 10428100.0
+        },
+        {
+          "iso": "LTU",
+          "kg": 10267900.0
+        },
+        {
+          "iso": "TGO",
+          "kg": 8360500.0
+        },
+        {
+          "iso": "UKR",
+          "kg": 7382527.0
+        },
+        {
+          "iso": "ESP",
+          "kg": 6861690.0
+        },
+        {
+          "iso": "CMR",
+          "kg": 6825090.0
+        },
+        {
+          "iso": "IRQ",
+          "kg": 6560420.0
+        },
+        {
+          "iso": "CHL",
+          "kg": 5436820.0
+        },
+        {
+          "iso": "MAR",
+          "kg": 4924010.0
+        },
+        {
+          "iso": "OMN",
+          "kg": 4447320.0
+        },
+        {
+          "iso": "GHA",
+          "kg": 3981120.0
+        },
+        {
+          "iso": "JOR",
+          "kg": 3069650.0
+        }
+      ]
+    },
+    {
+      "from": "DNK",
+      "to": [
+        {
+          "iso": "POL",
+          "kg": 6061440.0
+        },
+        {
+          "iso": "NLD",
+          "kg": 4126250.0
+        }
+      ]
+    },
+    {
+      "from": "ESP",
+      "to": [
+        {
+          "iso": "ARE",
+          "kg": 51444760.0
+        },
+        {
+          "iso": "MAR",
+          "kg": 35157178.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 17808088.0
+        }
+      ]
+    },
+    {
+      "from": "FIN",
+      "to": [
+        {
+          "iso": "LTU",
+          "kg": 8591860.0
+        },
+        {
+          "iso": "EST",
+          "kg": 8051970.0
+        }
+      ]
+    },
+    {
+      "from": "FRA",
+      "to": [
+        {
+          "iso": "PAK",
+          "kg": 32203250.0
+        },
+        {
+          "iso": "BEL",
+          "kg": 26049708.0
+        },
+        {
+          "iso": "TUN",
+          "kg": 20598808.17
+        },
+        {
+          "iso": "ARE",
+          "kg": 10795581.0
+        },
+        {
+          "iso": "NLD",
+          "kg": 10397229.0
+        },
+        {
+          "iso": "HTI",
+          "kg": 9683758.0
+        },
+        {
+          "iso": "TGO",
+          "kg": 7315002.0
+        },
+        {
+          "iso": "BFA",
+          "kg": 5600738.0
+        },
+        {
+          "iso": "MDG",
+          "kg": 5348153.67
+        },
+        {
+          "iso": "DEU",
+          "kg": 5237577.0
+        },
+        {
+          "iso": "PRT",
+          "kg": 4458266.0
+        },
+        {
+          "iso": "ESP",
+          "kg": 3718221.47
+        },
+        {
+          "iso": "SEN",
+          "kg": 3298796.0
+        }
+      ]
+    },
+    {
+      "from": "GBR",
+      "to": [
+        {
+          "iso": "ARE",
+          "kg": 107557143.0
+        },
+        {
+          "iso": "GHA",
+          "kg": 57038375.0
+        },
+        {
+          "iso": "POL",
+          "kg": 52662860.67
+        },
+        {
+          "iso": "PAK",
+          "kg": 47022355.0
+        },
+        {
+          "iso": "UKR",
+          "kg": 43029203.0
+        },
+        {
+          "iso": "BEN",
+          "kg": 15621000.0
+        },
+        {
+          "iso": "HUN",
+          "kg": 12492272.0
+        },
+        {
+          "iso": "KEN",
+          "kg": 7323221.0
+        },
+        {
+          "iso": "TGO",
+          "kg": 7290730.0
+        },
+        {
+          "iso": "CIV",
+          "kg": 6109930.0
+        },
+        {
+          "iso": "LTU",
+          "kg": 5467666.0
+        },
+        {
+          "iso": "IND",
+          "kg": 5421138.0
+        },
+        {
+          "iso": "LVA",
+          "kg": 5243680.0
+        },
+        {
+          "iso": "MAR",
+          "kg": 5170266.0
+        },
+        {
+          "iso": "NGA",
+          "kg": 4553035.0
+        },
+        {
+          "iso": "TUR",
+          "kg": 3849233.0
+        },
+        {
+          "iso": "ESP",
+          "kg": 3033083.0
+        }
+      ]
+    },
+    {
+      "from": "GRC",
+      "to": [
+        {
+          "iso": "ARE",
+          "kg": 8818631.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 3625940.0
+        }
+      ]
+    },
+    {
+      "from": "HKG",
+      "to": [
+        {
+          "iso": "PHL",
+          "kg": 18437600.0
+        }
+      ]
+    },
+    {
+      "from": "HUN",
+      "to": [
+        {
+          "iso": "PAK",
+          "kg": 13342180.0
+        },
+        {
+          "iso": "ROU",
+          "kg": 8774070.0
+        },
+        {
+          "iso": "SVK",
+          "kg": 3693320.0
+        },
+        {
+          "iso": "BEN",
+          "kg": 3587555.0
+        },
+        {
+          "iso": "DEU",
+          "kg": 3450690.0
+        },
+        {
+          "iso": "ITA",
+          "kg": 3217290.0
+        }
+      ]
+    },
+    {
+      "from": "IND",
+      "to": [
+        {
+          "iso": "KEN",
+          "kg": 9699890.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 9328850.0
+        },
+        {
+          "iso": "UGA",
+          "kg": 6153490.0
+        },
+        {
+          "iso": "THA",
+          "kg": 4454790.0
+        }
+      ]
+    },
+    {
+      "from": "IRL",
+      "to": [
+        {
+          "iso": "GBR",
+          "kg": 4503973.0
+        }
+      ]
+    },
+    {
+      "from": "ISR",
+      "to": [
+        {
+          "iso": "TGO",
+          "kg": 5608591.39
+        }
+      ]
+    },
+    {
+      "from": "ITA",
+      "to": [
+        {
+          "iso": "TUN",
+          "kg": 42653000.0
+        },
+        {
+          "iso": "GIN",
+          "kg": 21178000.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 19630100.0
+        },
+        {
+          "iso": "SEN",
+          "kg": 12136800.0
+        },
+        {
+          "iso": "BFA",
+          "kg": 7545310.0
+        },
+        {
+          "iso": "BGR",
+          "kg": 6424900.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 6052120.0
+        },
+        {
+          "iso": "IND",
+          "kg": 5959750.0
+        },
+        {
+          "iso": "SVK",
+          "kg": 5755020.0
+        },
+        {
+          "iso": "ALB",
+          "kg": 4509390.0
+        },
+        {
+          "iso": "TGO",
+          "kg": 2878690.0
+        },
+        {
+          "iso": "MLI",
+          "kg": 2800190.0
+        }
+      ]
+    },
+    {
+      "from": "JPN",
+      "to": [
+        {
+          "iso": "MYS",
+          "kg": 131456280.0
+        },
+        {
+          "iso": "KOR",
+          "kg": 21074420.0
+        },
+        {
+          "iso": "PHL",
+          "kg": 20073930.0
+        },
+        {
+          "iso": "KHM",
+          "kg": 14484412.0
+        },
+        {
+          "iso": "THA",
+          "kg": 9067680.0
+        },
+        {
+          "iso": "HKG",
+          "kg": 6467819.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 5093341.0
+        }
+      ]
+    },
+    {
+      "from": "KOR",
+      "to": [
+        {
+          "iso": "MYS",
+          "kg": 79351930.0
+        },
+        {
+          "iso": "IND",
+          "kg": 66476380.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 31752200.0
+        },
+        {
+          "iso": "PHL",
+          "kg": 25623220.0
+        },
+        {
+          "iso": "NGA",
+          "kg": 22048810.0
+        },
+        {
+          "iso": "THA",
+          "kg": 20184430.0
+        },
+        {
+          "iso": "KHM",
+          "kg": 14643252.0
+        },
+        {
+          "iso": "CHL",
+          "kg": 13000437.0
+        },
+        {
+          "iso": "IRQ",
+          "kg": 6262906.0
+        },
+        {
+          "iso": "TZA",
+          "kg": 4896663.0
+        },
+        {
+          "iso": "BGD",
+          "kg": 3915886.0
+        },
+        {
+          "iso": "GHA",
+          "kg": 3189435.0
+        }
+      ]
+    },
+    {
+      "from": "LTU",
+      "to": [
+        {
+          "iso": "PAK",
+          "kg": 10215905.0
+        },
+        {
+          "iso": "TGO",
+          "kg": 6445242.0
+        },
+        {
+          "iso": "UKR",
+          "kg": 6389041.0
+        },
+        {
+          "iso": "BEN",
+          "kg": 5959755.0
+        },
+        {
+          "iso": "BLR",
+          "kg": 3493334.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 3256214.0
+        },
+        {
+          "iso": "KEN",
+          "kg": 3192923.0
+        }
+      ]
+    },
+    {
+      "from": "MYS",
+      "to": [
+        {
+          "iso": "IDN",
+          "kg": 24610617.38
+        },
+        {
+          "iso": "THA",
+          "kg": 14787431.4
+        },
+        {
+          "iso": "PAK",
+          "kg": 10548521.0
+        },
+        {
+          "iso": "HKG",
+          "kg": 7441020.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 6599614.8
+        },
+        {
+          "iso": "KHM",
+          "kg": 4811416.0
+        },
+        {
+          "iso": "IND",
+          "kg": 3683027.0
+        },
+        {
+          "iso": "JPN",
+          "kg": 3095444.65
+        },
+        {
+          "iso": "AUS",
+          "kg": 2982973.6
+        }
+      ]
+    },
+    {
+      "from": "NLD",
+      "to": [
+        {
+          "iso": "PAK",
+          "kg": 19422800.0
+        },
+        {
+          "iso": "POL",
+          "kg": 17103400.0
+        },
+        {
+          "iso": "CMR",
+          "kg": 12387400.0
+        },
+        {
+          "iso": "GHA",
+          "kg": 8415750.0
+        },
+        {
+          "iso": "LTU",
+          "kg": 8283200.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 8053650.0
+        },
+        {
+          "iso": "BEL",
+          "kg": 6051900.0
+        },
+        {
+          "iso": "DEU",
+          "kg": 5963240.0
+        },
+        {
+          "iso": "KAZ",
+          "kg": 4993560.0
+        },
+        {
+          "iso": "ZAF",
+          "kg": 4748470.0
+        },
+        {
+          "iso": "UKR",
+          "kg": 4713120.0
+        },
+        {
+          "iso": "EST",
+          "kg": 4314210.0
+        },
+        {
+          "iso": "CHL",
+          "kg": 4180070.0
+        },
+        {
+          "iso": "IND",
+          "kg": 3502430.0
+        },
+        {
+          "iso": "MAR",
+          "kg": 3358560.0
+        },
+        {
+          "iso": "TUR",
+          "kg": 3352570.0
+        },
+        {
+          "iso": "GEO",
+          "kg": 3317890.0
+        }
+      ]
+    },
+    {
+      "from": "NOR",
+      "to": [
+        {
+          "iso": "POL",
+          "kg": 14029100.0
+        },
+        {
+          "iso": "DEU",
+          "kg": 5268670.0
+        },
+        {
+          "iso": "BGR",
+          "kg": 3650820.0
+        }
+      ]
+    },
+    {
+      "from": "NZL",
+      "to": [
+        {
+          "iso": "PNG",
+          "kg": 6496657.0
+        }
+      ]
+    },
+    {
+      "from": "PAK",
+      "to": [
+        {
+          "iso": "KEN",
+          "kg": 73856674.0
+        },
+        {
+          "iso": "MOZ",
+          "kg": 40513974.0
+        },
+        {
+          "iso": "TZA",
+          "kg": 36683076.0
+        },
+        {
+          "iso": "THA",
+          "kg": 33388858.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 12355262.0
+        },
+        {
+          "iso": "AFG",
+          "kg": 12220975.0
+        },
+        {
+          "iso": "PHL",
+          "kg": 11005455.0
+        },
+        {
+          "iso": "USA",
+          "kg": 10906655.0
+        },
+        {
+          "iso": "CHL",
+          "kg": 10890298.0
+        },
+        {
+          "iso": "COD",
+          "kg": 10767565.0
+        },
+        {
+          "iso": "MDG",
+          "kg": 9296907.0
+        },
+        {
+          "iso": "SEN",
+          "kg": 5475851.0
+        },
+        {
+          "iso": "MYS",
+          "kg": 4232186.0
+        },
+        {
+          "iso": "GBR",
+          "kg": 3742662.0
+        }
+      ]
+    },
+    {
+      "from": "PHL",
+      "to": [
+        {
+          "iso": "HKG",
+          "kg": 17027500.0
+        },
+        {
+          "iso": "MYS",
+          "kg": 3482100.0
+        }
+      ]
+    },
+    {
+      "from": "POL",
+      "to": [
+        {
+          "iso": "PAK",
+          "kg": 21496800.0
+        },
+        {
+          "iso": "TGO",
+          "kg": 17564720.0
+        },
+        {
+          "iso": "IND",
+          "kg": 12589775.0
+        },
+        {
+          "iso": "UKR",
+          "kg": 11532060.0
+        },
+        {
+          "iso": "BEN",
+          "kg": 9913795.0
+        },
+        {
+          "iso": "BLR",
+          "kg": 8853460.0
+        },
+        {
+          "iso": "GIN",
+          "kg": 7949265.0
+        },
+        {
+          "iso": "NGA",
+          "kg": 7509620.0
+        },
+        {
+          "iso": "CMR",
+          "kg": 7381155.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 7045248.0
+        },
+        {
+          "iso": "GHA",
+          "kg": 6694754.0
+        },
+        {
+          "iso": "MLI",
+          "kg": 6672456.0
+        },
+        {
+          "iso": "UGA",
+          "kg": 3632244.0
+        },
+        {
+          "iso": "DJI",
+          "kg": 3068661.0
+        }
+      ]
+    },
+    {
+      "from": "PRT",
+      "to": [
+        {
+          "iso": "ARE",
+          "kg": 12493199.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 4080860.0
+        }
+      ]
+    },
+    {
+      "from": "SAU",
+      "to": [
+        {
+          "iso": "ARE",
+          "kg": 28813640.0
+        },
+        {
+          "iso": "COD",
+          "kg": 23730850.0
+        },
+        {
+          "iso": "TZA",
+          "kg": 18990720.0
+        }
+      ]
+    },
+    {
+      "from": "SVK",
+      "to": [
+        {
+          "iso": "BEN",
+          "kg": 6463377.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 5339359.0
+        }
+      ]
+    },
+    {
+      "from": "SWE",
+      "to": [
+        {
+          "iso": "LTU",
+          "kg": 11164000.0
+        },
+        {
+          "iso": "POL",
+          "kg": 8131000.0
+        },
+        {
+          "iso": "DEU",
+          "kg": 5405000.0
+        }
+      ]
+    },
+    {
+      "from": "TGO",
+      "to": [
+        {
+          "iso": "GAB",
+          "kg": 4040080.0
+        }
+      ]
+    },
+    {
+      "from": "TUR",
+      "to": [
+        {
+          "iso": "IRQ",
+          "kg": 18059012.0
+        },
+        {
+          "iso": "PAK",
+          "kg": 12115062.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 8808282.0
+        },
+        {
+          "iso": "IND",
+          "kg": 5780020.0
+        },
+        {
+          "iso": "GEO",
+          "kg": 4595427.0
+        },
+        {
+          "iso": "CHL",
+          "kg": 4232940.0
+        },
+        {
+          "iso": "LBN",
+          "kg": 3445890.0
+        },
+        {
+          "iso": "COG",
+          "kg": 3285400.0
+        },
+        {
+          "iso": "COD",
+          "kg": 3162264.0
+        },
+        {
+          "iso": "SYR",
+          "kg": 3161630.0
+        }
+      ]
+    },
+    {
+      "from": "UKR",
+      "to": [
+        {
+          "iso": "TGO",
+          "kg": 2901880.0
+        }
+      ]
+    },
+    {
+      "from": "USA",
+      "to": [
+        {
+          "iso": "GTM",
+          "kg": 116115966.0
+        },
+        {
+          "iso": "IND",
+          "kg": 82681235.7
+        },
+        {
+          "iso": "CAN",
+          "kg": 74357871.0
+        },
+        {
+          "iso": "CHL",
+          "kg": 60673531.71
+        },
+        {
+          "iso": "PAK",
+          "kg": 51873019.0
+        },
+        {
+          "iso": "HND",
+          "kg": 44386177.0
+        },
+        {
+          "iso": "MEX",
+          "kg": 32720576.5
+        },
+        {
+          "iso": "DOM",
+          "kg": 32415808.0
+        },
+        {
+          "iso": "NIC",
+          "kg": 27642163.0
+        },
+        {
+          "iso": "SLV",
+          "kg": 24528751.0
+        },
+        {
+          "iso": "PHL",
+          "kg": 10121139.0
+        },
+        {
+          "iso": "ARE",
+          "kg": 9752377.11
+        },
+        {
+          "iso": "LBR",
+          "kg": 9333675.0
+        },
+        {
+          "iso": "CRI",
+          "kg": 9242846.0
+        },
+        {
+          "iso": "TUN",
+          "kg": 8520091.0
+        },
+        {
+          "iso": "SEN",
+          "kg": 8256085.0
+        },
+        {
+          "iso": "PAN",
+          "kg": 5958420.0
+        },
+        {
+          "iso": "COD",
+          "kg": 5512554.0
+        },
+        {
+          "iso": "GHA",
+          "kg": 4021758.0
+        },
+        {
+          "iso": "TZA",
+          "kg": 3895452.0
+        },
+        {
+          "iso": "POL",
+          "kg": 3839811.0
+        },
+        {
+          "iso": "GIN",
+          "kg": 3638628.0
+        },
+        {
+          "iso": "MYS",
+          "kg": 3339736.43
+        },
+        {
+          "iso": "KEN",
+          "kg": 3263669.0
+        },
+        {
+          "iso": "UKR",
+          "kg": 2919308.0
+        }
+      ]
+    }
+  ]
+}
