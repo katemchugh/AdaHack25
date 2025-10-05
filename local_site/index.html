@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LocalSite — Home</title>
+<link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span> LocalSite</div>
+    <div class="menu"><a href="index.html" style="background:rgba(76,201,240,.22)">Home</a><a href="games.html">Games</a><a href="data.html">Data</a><a href="articles.html">Articles</a><a href="charities.html">Charities</a></div>
+  </div>
+</nav>
+
+<main class="container">
+
+<section class="hero">
+  <div class="card">
+    <span class="badge">Welcome</span>
+    <h1>Your locally hosted hub</h1>
+    <p>Everything lives on your machine: pixel-perfect games, tidy data, your own articles, and a curated list of charities. No external CDNs, just simple files you can edit.</p>
+    <div style="display:flex;gap:10px;margin-top:10px">
+      <a class="btn" href="games.html">Play a game</a>
+      <a class="btn" href="data.html">Browse data</a>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Quick tips</h2>
+    <div class="list">
+      <div class="item"><div class="icon">⌘</div><div><strong>Serve locally:</strong> In this folder run <span class="kbd">python3 -m http.server 8000</span> then visit <span class="kbd">http://localhost:8000</span>.</div></div>
+      <div class="item"><div class="icon">✏️</div><div><strong>Edit content:</strong> Open files with any editor. Everything is plain HTML/CSS/JS.</div></div>
+      <div class="item"><div class="icon">🧭</div><div><strong>Navigate:</strong> Use the top menu to jump between sections.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="grid" style="margin-top:24px">
+  <div class="card col-6">
+    <h2>What’s inside</h2>
+    <ul class="list">
+      <li class="item"><div class="icon">🎮</div><div><strong>Games:</strong> Includes a clean Tic‑Tac‑Toe you can expand.</div></li>
+      <li class="item"><div class="icon">📊</div><div><strong>Data:</strong> Loads <code>data.json</code> and renders a table.</div></li>
+      <li class="item"><div class="icon">📝</div><div><strong>Articles:</strong> Simple article cards you can duplicate.</div></li>
+      <li class="item"><div class="icon">💝</div><div><strong>Charities:</strong> A starter list with categories.</div></li>
+    </ul>
+  </div>
+  <div class="card col-6">
+    <h2>Customize</h2>
+    <p>Update colors in <code>assets/style.css</code>, and tweak layouts with the <code>.grid</code> and <code>.card</code> classes. All pages share the same nav and footer for consistency.</p>
+  </div>
+</section>
+
+</main>
+<footer class="container">© <span id="year"></span> • Made locally</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

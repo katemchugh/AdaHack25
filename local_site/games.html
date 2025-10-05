@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LocalSite — Games</title>
+<link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span> LocalSite</div>
+    <div class="menu"><a href="index.html">Home</a><a href="games.html" style="background:rgba(76,201,240,.22)">Games</a><a href="data.html">Data</a><a href="articles.html">Articles</a><a href="charities.html">Charities</a></div>
+  </div>
+</nav>
+
+<main class="container">
+
+<section class="card">
+  <h1>Games</h1>
+  <p>Here’s a tiny, dependency‑free Tic‑Tac‑Toe to get you started.</p>
+  <div id="ttt" class="card" style="display:grid;grid-template-columns:repeat(3,100px);gap:10px;justify-content:center;margin:12px auto;background:transparent;border:none;box-shadow:none">
+  </div>
+  <div style="text-align:center;margin-top:10px">
+    <button id="resetBtn" class="btn">Reset</button>
+    <span id="status" class="badge" style="margin-left:8px">Your turn: X</span>
+  </div>
+</section>
+<script>
+(function(){
+  const board = Array(9).fill(null);
+  let xTurn = true;
+  const winLines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  const root = document.getElementById('ttt');
+  const status = document.getElementById('status');
+  const resetBtn = document.getElementById('resetBtn');
+
+  function draw(){
+    root.innerHTML = '';
+    for(let i=0;i<9;i++){
+      const cell = document.createElement('button');
+      cell.className = 'card';
+      cell.style.width='100px'; cell.style.height='100px';
+      cell.style.fontSize='2rem'; cell.style.display='grid'; cell.style.placeItems='center';
+      cell.style.cursor='pointer';
+      cell.textContent = board[i] || '';
+      cell.addEventListener('click',()=>move(i));
+      root.appendChild(cell);
+    }
+  }
+  function winner(){
+    for(const [a,b,c] of winLines){
+      if(board[a] && board[a]===board[b] && board[a]===board[c]) return board[a];
+    }
+    if(board.every(Boolean)) return 'draw';
+    return null;
+  }
+  function move(i){
+    if(board[i] || winner()) return;
+    board[i] = xTurn ? 'X' : 'O';
+    xTurn = !xTurn;
+    const w = winner();
+    if(w==='draw') status.textContent = 'It\'s a draw!';
+    else if(w) status.textContent = `Winner: ${w}`;
+    else status.textContent = `Your turn: ${xTurn?'X':'O'}`;
+    draw();
+  }
+  resetBtn.addEventListener('click',()=>{
+    for(let i=0;i<9;i++) board[i]=null;
+    xTurn = true; status.textContent='Your turn: X'; draw();
+  });
+  draw();
+})();
+</script>
+
+</main>
+<footer class="container">© <span id="year"></span> • Made locally</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

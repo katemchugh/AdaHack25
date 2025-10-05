@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Alpha",
+    "category": "A",
+    "value": 42
+  },
+  {
+    "id": 2,
+    "name": "Bravo",
+    "category": "B",
+    "value": 27
+  },
+  {
+    "id": 3,
+    "name": "Charlie",
+    "category": "A",
+    "value": 85
+  },
+  {
+    "id": 4,
+    "name": "Delta",
+    "category": "C",
+    "value": 13
+  },
+  {
+    "id": 5,
+    "name": "Echo",
+    "category": "B",
+    "value": 64
+  }
+]
