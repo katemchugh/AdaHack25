@@ -136,6 +136,35 @@
       z-index: 10;
       border: 2px solid rgba(255, 255, 255, 0.3);
     }
+
+    #submit-btn:hover { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); }
+
+    #submit-modal {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      width:100vw; height:100vh;
+      background: rgba(0,0,0,0.65);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      font-family: inherit;
+      text-align: center;
+      animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn { from {opacity:0;} to{opacity:1;} }
+    .submit-sequence { font-size: 2rem; margin-bottom:24px; font-weight:700; letter-spacing:1px; }
+    .submit-impact { font-size: 1.2rem; margin:18px 0; background: rgba(255,255,255,0.12); border-radius:12px; padding:18px 24px; display:flex; align-items:center; gap:12px; justify-content:center; min-width:320px; max-width:90vw; flex-direction: column; }
+    .submit-impact-icon { font-size: 1rem; margin-top: 8px; }
+    .continue-btn, .close-btn {
+      margin-top: 24px; padding: 10px 24px; background: #0077b6; color:#fff; border:none; border-radius:12px;
+      font-size:1rem; cursor:pointer; font-weight:600; box-shadow:0 2px 8px rgba(0,0,0,0.18); transition: background 0.2s; display:inline-block;
+    }
+    .continue-btn:hover, .close-btn:hover { background:#023e8a; }
+
+    
   </style>
 </head>
 <body>
@@ -149,6 +178,8 @@
     <div class="menu"><a href="index.html">Home</a><a href="games.html" style="background:rgba(76,201,240,.22)">Game</a><a href="data.html">Data</a><a href="articles.html">News Hub</a><a href="charities.html">Charities</a></div>
   </div>
 </nav>
+
+<div id="submit-modal"><div id="submit-modal-content"></div></div>
 
 <main>
   <div id="info-cards">
@@ -196,6 +227,9 @@
 <button id="submit-btn">Submit</button>
 
 <script>
+
+  
+
 (function(){
   const tops = Array.from(document.querySelectorAll('.outfit.top'));
   const bottoms = Array.from(document.querySelectorAll('.outfit.bottom'));
@@ -262,6 +296,47 @@
   document.getElementById('shoe-rightArrow').addEventListener('click',()=>{ shoeCurrent=(shoeCurrent+1)%shoes.length; updateShoes(); });
 
   updateTops(); updateBottoms(); updateShoes(); // Initialize all
+
+  document.getElementById('submit-btn').addEventListener('click',function(){
+    const modal=document.getElementById('submit-modal');
+    const content=document.getElementById('submit-modal-content');
+    modal.style.display='flex'; content.innerHTML='';
+
+    // Calculate wasted CO2
+    let wastedCO2=0;
+    topDetails.forEach((t,i)=>{ if(i!==topCurrent) wastedCO2+=parseInt(t.co2); });
+    bottomDetails.forEach((b,i)=>{ if(i!==bottomCurrent) wastedCO2+=parseInt(b.co2); });
+
+    const steps = [
+  `<div class="submit-sequence">What about the clothes you didn't choose?</div>`,
+  `<div class="submit-sequence">They produced <strong>${wastedCO2} kg CO₂ emissions</strong>!</div>`,
+  `<div class="submit-sequence">Fast fashion disproportionately harms marginalized communities.</div>`,
+  `<div class="submit-sequence">They produce the clothes and receive much of the waste.</div>`,
+  `<div class="submit-impact"><img src="assets/water.png" style="width:300px;height:200px;"><span class="submit-impact-icon">💧 Water polluted from factories</span></div>`,
+  `<div class="submit-impact"><img src="assets/heat.png" style="width:300px;height:200px;"><span class="submit-impact-icon">🔥 Heat and energy wasted in production</span></div>`,
+  `<div class="submit-impact"><img src="assets/trash.png" style="width:300px;height:200px;"><span class="submit-impact-icon">🗑️ Discarded clothes adding to waste</span></div>`,
+  `<div class="submit-sequence">Every choice counts. Think before you buy!</div>`
+];
+
+
+    let currentStep=0;
+    function showStep(){
+      content.innerHTML=steps[currentStep];
+      if(currentStep<steps.length-1){
+        const btn=document.createElement('button'); btn.className='continue-btn'; btn.textContent='Continue';
+        btn.onclick=function(){ currentStep++; showStep(); };
+        content.appendChild(btn);
+      } else {
+        const btn=document.createElement('button'); btn.className='close-btn'; btn.textContent='Close';
+        btn.onclick=function(){ modal.style.display='none'; };
+        content.appendChild(btn);
+      }
+    }
+    showStep();
+  });
+
+
+
 })();
 </script>
 </body>
