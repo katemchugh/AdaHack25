@@ -5,7 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Threads & Temperatures — News Hub</title>
 <link rel="stylesheet" href="assets/style.css"/>
+
+<!-- Page-only styles for thumbnail layout + external-link arrow -->
 <style>
+  /* Keep logo tidy in the nav (safe even if already styled in global CSS) */
+  .brand .logo{ height:28px; width:auto; display:block; border-radius:6px }
+  @media (max-width:900px){ .brand .logo{ height:24px } }
+
+  /* News item with preview image */
+  .item.news{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:14px; align-items:center;
+    background:#ffffff; /* readable on photo-heavy pages */
+    border:1px solid rgba(0,0,0,.06);
+  }
+  .item.news .thumb{
+    width:100%; aspect-ratio:16/9; object-fit:cover;
+    border-radius:12px; border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  @media (max-width:700px){
+    .item.news{ grid-template-columns:1fr; }
+  }
+  /* External link arrow */
   .ext::after{ content:"↗"; margin-left:6px; font-size:.9em; opacity:.7; }
 </style>
 </head>
@@ -14,10 +37,16 @@
 <nav class="nav">
   <div class="nav-inner">
     <div class="brand">
-      <img src="assets/img/logo.png" alt="Threads & Temperatures logo" class="logo">
+      <img src="assets/img/logo.png" alt="Threads & Temperatures Logo" class="logo">
       Threads & Temperatures
     </div>
-    <div class="menu"><a href="index.html">Home</a><a href="games.html">Games</a><a href="data.html">Data</a><a href="articles.html" style="background:rgba(76,201,240,.22)">News Hub</a><a href="charities.html">Charities</a></div>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="games.html">Games</a>
+      <a href="data.html">Data</a>
+      <a href="articles.html" style="background:rgba(76,201,240,.22)">News Hub</a>
+      <a href="charities.html">Charities</a>
+    </div>
   </div>
 </nav>
 
@@ -25,75 +54,19 @@
 
   <section class="grid">
     <div class="card col-8">
+      <span class="badge">Curated</span>
       <h1>News Hub</h1>
       <p style="margin-top:-4px;color:var(--muted)">
-        Curated reporting on fast fashion, climate impacts, and justice for marginalized communities.
+        Reporting on fast fashion, climate impacts, and justice for marginalised communities.
+        Thumbnails are local for speed and reliability.
       </p>
 
-      <div class="list">
-        <!-- UNEP -->
-        <article class="item">
-          <div class="icon">🏛️</div>
-          <div>
-            <h3>
-              <a class="ext" href="https://www.unep.org/news-and-stories/press-release/unep-and-un-climate-change-provide-fashion-communicators-practical" target="_blank" rel="noopener noreferrer">
-                UNEP & UN Climate Change: Practical guidance for fashion communicators
-              </a>
-            </h3>
-            <p>Press release on aligning fashion storytelling with climate and sustainability goals.</p>
-          </div>
-        </article>
-
-        <!-- Earth.org -->
-        <article class="item">
-          <div class="icon">🌍</div>
-          <div>
-            <h3>
-              <a class="ext" href="https://earth.org/marginalised-groups-are-disproportionately-affected-by-climate-change" target="_blank" rel="noopener noreferrer">
-                Marginalised groups are disproportionately affected by climate change
-              </a>
-            </h3>
-            <p>Overview of climate risks and inequities affecting vulnerable communities.</p>
-          </div>
-        </article>
-
-        <!-- Vogue Business -->
-        <article class="item">
-          <div class="icon">🧵</div>
-          <div>
-            <h3>
-              <a class="ext" href="https://www.voguebusiness.com/story/sustainability/what-the-kantamanto-market-fire-means-for-sustainable-fashion" target="_blank" rel="noopener noreferrer">
-                Kantamanto market fire: what it means for sustainable fashion
-              </a>
-            </h3>
-            <p>Context on Ghana’s Kantamanto market and the global secondhand/fast-fashion pipeline.</p>
-          </div>
-        </article>
-
-        <!-- EcoWatch -->
-        <article class="item">
-          <div class="icon">🪸</div>
-          <div>
-            <h3>
-              <a class="ext" href="https://www.ecowatch.com/discarded-clothing-uk-ghana-protected-wetland.html" target="_blank" rel="noopener noreferrer">
-                Discarded UK clothing found in a protected wetland in Ghana
-              </a>
-            </h3>
-            <p>Investigating export waste streams and impacts on sensitive ecosystems.</p>
-          </div>
-        </article>
-
-        <!-- AP News -->
-        <article class="item">
-          <div class="icon">📰</div>
-          <div>
-            <h3>
-              <a class="ext" href="https://apnews.com/article/ghana-fashion-waste-clothing-pollution-0809f25605722a53658bf21d7d9b1548" target="_blank" rel="noopener noreferrer">
-                Ghana: fashion waste and clothing pollution (AP News)
-              </a>
-            </h3>
-            <p>Reporting on how imported textile waste is overwhelming local environments.</p>
-          </div>
+      <!-- JSON-rendered list goes here -->
+      <div id="newsList" class="list">
+        <!-- Fallback while loading -->
+        <article class="item news" aria-hidden="true">
+          <div class="thumb" style="background:#f1f5f9"></div>
+          <div><h3>Loading news…</h3><p>Please wait a moment.</p></div>
         </article>
       </div>
     </div>
@@ -102,13 +75,74 @@
       <h2>About this hub</h2>
       <p>We aggregate external reporting to highlight the real-world effects of fast fashion and the climate crisis.</p>
       <div class="list" style="margin-top:10px">
-        <div class="item"><div class="icon">✅</div><div><strong>Credible sources</strong><br/>International orgs and established outlets.</div></div>
-        <div class="item"><div class="icon">⚖️</div><div><strong>Justice lens</strong><br/>Focus on workers, communities, and ecosystems.</div></div>
+        <div class="item"><div class="icon">✅</div><div><strong>Credible sources</strong><br/>International orgs & established outlets.</div></div>
+        <div class="item"><div class="icon">⚖️</div><div><strong>Justice lens</strong><br/>Focus on workers, communities, ecosystems.</div></div>
       </div>
       <p style="margin-top:12px">
-        Want to suggest a link? Email <a href="mailto:editor@threadsandtemperatures.org">editor@threadsandtemperatures.org</a>.
+        Suggest a link: <a href="mailto:editor@threads-temperatures.org">editor@threads-temperatures.org</a>
       </p>
     </aside>
   </section>
 
 </main>
+
+<footer class="container">© <span id="year"></span> • Made locally</footer>
+
+<!-- Render from assets/news.json -->
+<script>
+(async function(){
+  const root = document.getElementById('newsList');
+
+  function itemTemplate(n){
+    const safeTitle = (n.title || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const safeDesc  = (n.desc  || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const img = n.img || '';
+    const url = n.url || '#';
+
+    return `
+      <article class="item news">
+        <img class="thumb" src="${img}" alt="${safeTitle}" loading="lazy" width="320" height="180">
+        <div>
+          <h3><a class="ext" href="${url}" target="_blank" rel="noopener noreferrer">${safeTitle}</a></h3>
+          <p>${safeDesc}</p>
+        </div>
+      </article>
+    `;
+  }
+
+  try{
+    const res = await fetch('assets/news.json', { cache: 'no-store' });
+    if(!res.ok) throw new Error('Failed to load news.json');
+    const items = await res.json();
+
+    if(Array.isArray(items) && items.length){
+      root.innerHTML = items.map(itemTemplate).join('');
+    }else{
+      root.innerHTML = `
+        <article class="item">
+          <div class="icon">ℹ️</div>
+          <div>
+            <strong>No news items yet.</strong>
+            <p>Add entries to <code>assets/news.json</code> to populate this list.</p>
+          </div>
+        </article>
+      `;
+    }
+  }catch(err){
+    console.error(err);
+    root.innerHTML = `
+      <article class="item">
+        <div class="icon">⚠️</div>
+        <div>
+          <strong>Couldn’t load news.</strong>
+          <p>Make sure <code>assets/news.json</code> exists and is valid JSON.</p>
+        </div>
+      </article>
+    `;
+  }
+})();
+</script>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
