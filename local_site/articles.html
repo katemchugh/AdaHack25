@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Threads & Temperatures — Articles</title>
+<title>Threads & Temperatures — News Hub</title>
 <link rel="stylesheet" href="assets/style.css"/>
+<style>
+  .ext::after{ content:"↗"; margin-left:6px; font-size:.9em; opacity:.7; }
+</style>
 </head>
 <body>
 
@@ -14,48 +17,98 @@
       <img src="assets/img/logo.png" alt="Threads & Temperatures logo" class="logo">
       Threads & Temperatures
     </div>
-    <div class="menu"><a href="index.html">Home</a><a href="games.html">Games</a><a href="data.html">Data</a><a href="articles.html" style="background:rgba(76,201,240,.22)">Articles</a><a href="charities.html">Charities</a></div>
+    <div class="menu"><a href="index.html">Home</a><a href="games.html">Games</a><a href="data.html">Data</a><a href="articles.html" style="background:rgba(76,201,240,.22)">News Hub</a><a href="charities.html">Charities</a></div>
   </div>
 </nav>
 
 <main class="container">
 
-<section class="grid">
-  <div class="card col-8">
-    <h1>Articles</h1>
-    <div class="list">
-      <article class="item">
-        <div class="icon">📝</div>
-        <div>
-          <h3>Getting started with this site</h3>
-          <p>Edit any page in a text editor. Duplicate these article blocks to add more posts. Keep things simple and local.</p>
-        </div>
-      </article>
-      <article class="item">
-        <div class="icon">⚙️</div>
-        <div>
-          <h3>Customization ideas</h3>
-          <p>Swap colors in <code>assets/style.css</code>, add images to an <code>assets/img</code> folder, and wire up more interactivity with vanilla JS.</p>
-        </div>
-      </article>
-      <article class="item">
-        <div class="icon">🔒</div>
-        <div>
-          <h3>Privacy first</h3>
-          <p>No external libraries or fonts are used. Everything runs in your browser from your machine.</p>
-        </div>
-      </article>
+  <section class="grid">
+    <div class="card col-8">
+      <h1>News Hub</h1>
+      <p style="margin-top:-4px;color:var(--muted)">
+        Curated reporting on fast fashion, climate impacts, and justice for marginalized communities.
+      </p>
+
+      <div class="list">
+        <!-- UNEP -->
+        <article class="item">
+          <div class="icon">🏛️</div>
+          <div>
+            <h3>
+              <a class="ext" href="https://www.unep.org/news-and-stories/press-release/unep-and-un-climate-change-provide-fashion-communicators-practical" target="_blank" rel="noopener noreferrer">
+                UNEP & UN Climate Change: Practical guidance for fashion communicators
+              </a>
+            </h3>
+            <p>Press release on aligning fashion storytelling with climate and sustainability goals.</p>
+          </div>
+        </article>
+
+        <!-- Earth.org -->
+        <article class="item">
+          <div class="icon">🌍</div>
+          <div>
+            <h3>
+              <a class="ext" href="https://earth.org/marginalised-groups-are-disproportionately-affected-by-climate-change" target="_blank" rel="noopener noreferrer">
+                Marginalised groups are disproportionately affected by climate change
+              </a>
+            </h3>
+            <p>Overview of climate risks and inequities affecting vulnerable communities.</p>
+          </div>
+        </article>
+
+        <!-- Vogue Business -->
+        <article class="item">
+          <div class="icon">🧵</div>
+          <div>
+            <h3>
+              <a class="ext" href="https://www.voguebusiness.com/story/sustainability/what-the-kantamanto-market-fire-means-for-sustainable-fashion" target="_blank" rel="noopener noreferrer">
+                Kantamanto market fire: what it means for sustainable fashion
+              </a>
+            </h3>
+            <p>Context on Ghana’s Kantamanto market and the global secondhand/fast-fashion pipeline.</p>
+          </div>
+        </article>
+
+        <!-- EcoWatch -->
+        <article class="item">
+          <div class="icon">🪸</div>
+          <div>
+            <h3>
+              <a class="ext" href="https://www.ecowatch.com/discarded-clothing-uk-ghana-protected-wetland.html" target="_blank" rel="noopener noreferrer">
+                Discarded UK clothing found in a protected wetland in Ghana
+              </a>
+            </h3>
+            <p>Investigating export waste streams and impacts on sensitive ecosystems.</p>
+          </div>
+        </article>
+
+        <!-- AP News -->
+        <article class="item">
+          <div class="icon">📰</div>
+          <div>
+            <h3>
+              <a class="ext" href="https://apnews.com/article/ghana-fashion-waste-clothing-pollution-0809f25605722a53658bf21d7d9b1548" target="_blank" rel="noopener noreferrer">
+                Ghana: fashion waste and clothing pollution (AP News)
+              </a>
+            </h3>
+            <p>Reporting on how imported textile waste is overwhelming local environments.</p>
+          </div>
+        </article>
+      </div>
     </div>
-  </div>
-  <aside class="card col-4">
-    <h2>Write your own</h2>
-    <p>Create a new file (e.g., <code>my-article.html</code>) and link to it here, or just keep expanding this page.</p>
-    <a class="btn" href="index.html">Back to Home</a>
-  </aside>
-</section>
+
+    <aside class="card col-4">
+      <h2>About this hub</h2>
+      <p>We aggregate external reporting to highlight the real-world effects of fast fashion and the climate crisis.</p>
+      <div class="list" style="margin-top:10px">
+        <div class="item"><div class="icon">✅</div><div><strong>Credible sources</strong><br/>International orgs and established outlets.</div></div>
+        <div class="item"><div class="icon">⚖️</div><div><strong>Justice lens</strong><br/>Focus on workers, communities, and ecosystems.</div></div>
+      </div>
+      <p style="margin-top:12px">
+        Want to suggest a link? Email <a href="mailto:editor@threadsandtemperatures.org">editor@threadsandtemperatures.org</a>.
+      </p>
+    </aside>
+  </section>
 
 </main>
-<footer class="container">© <span id="year"></span> • Made locally</footer>
-<script src="assets/script.js"></script>
-</body>
-</html>
