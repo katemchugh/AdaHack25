@@ -30,6 +30,11 @@ a:hover{opacity:.9}
 }
 .nav-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 24px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.3px}
+.brand .logo{
+  height:100px; width:auto; display:block;
+  border-radius:6px; /* optional, remove if you want sharp corners */
+}
+@media (max-width:900px){ .brand .logo{ height:24px } }
 .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2)}
 .menu{display:flex;gap:10px;flex-wrap:wrap}
 .menu a{
