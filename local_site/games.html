@@ -185,17 +185,16 @@
   <div id="info-cards">
     <div class="info-card"><h2>Top Details</h2><p id="fabric">Fabric: Cotton</p><p id="co2">CO₂ Emission: 12 kg</p><p id="brand">Brand: EcoWear</p></div>
     <div class="info-card"><h2>Bottom Details</h2><p id="bottom-fabric">Fabric: Denim</p><p id="bottom-co2">CO₂ Emission: 20 kg</p><p id="bottom-brand">Brand: BlueJeans</p></div>
-    <!-- NEW Shoe Card -->
     <div class="info-card"><h2>Shoe Details</h2><p id="shoe-fabric">Material: Canvas</p><p id="shoe-co2">CO₂ Emission: 10 kg</p><p id="shoe-brand">Brand: FootPrint</p></div>
   </div>
 
   <div id="dressup-wrapper">
     <div id="dressup-stage">
-      <!-- NEW Shoes -->
       
-
+      <!--Base-->
       <img id="base" src="assets/base1.PNG" alt="Doll base">
 
+      <!-- Shoes -->
       <img class="outfit shoe" src="assets/shoe1.PNG">
       <img class="outfit shoe" src="assets/shoe2.PNG">
       <img class="outfit shoe" src="assets/shoe3.PNG">
@@ -209,42 +208,47 @@
       <img class="outfit top" src="assets/top1.PNG">
       <img class="outfit top" src="assets/top2.PNG">
       <img class="outfit top" src="assets/top3.PNG">
-
       
     </div>
 
+    <!-- Arrows -->
     <button class="arrow" id="top-leftArrow">⟨</button>
     <button class="arrow" id="top-rightArrow">⟩</button>
     <button class="arrow" id="bottom-leftArrow">⟨</button>
     <button class="arrow" id="bottom-rightArrow">⟩</button>
-    <!-- NEW Shoe Arrows -->
+    
     <button class="arrow" id="shoe-leftArrow">⟨</button>
     <button class="arrow" id="shoe-rightArrow">⟩</button>
   </div>
-</main>
 
+  <div id="counter-display">Clothing articles tried on: 0</div>
+  <button id="submit-btn">Submit</button>
+
+</main>
+<!-- 
 <div id="counter-display">Clothing articles tried on: 0</div>
-<button id="submit-btn">Submit</button>
+<button id="submit-btn">Submit</button> -->
 
 <script>
 
-  
-
 (function(){
+
+  // detail card logic
   const tops = Array.from(document.querySelectorAll('.outfit.top'));
   const bottoms = Array.from(document.querySelectorAll('.outfit.bottom'));
-  const shoes = Array.from(document.querySelectorAll('.outfit.shoe')); // NEW
+  const shoes = Array.from(document.querySelectorAll('.outfit.shoe')); 
 
-  let topCurrent=0, bottomCurrent=0, shoeCurrent=0; // NEW
+  let topCurrent=0, bottomCurrent=0, shoeCurrent=0; 
 
   const topDetails=[{fabric:'Cotton',co2:'12',brand:'EcoWear'},{fabric:'Silk',co2:'8',brand:'Zara'},{fabric:'Polyester',co2:'15',brand:'FastFashion'}];
   const bottomDetails=[{fabric:'Denim',co2:'20',brand:'Shein'},{fabric:'Cotton',co2:'15',brand:'EcoWear'},{fabric:'Leather',co2:'30',brand:'LeatherCo'}];
-  const shoeDetails=[ // NEW
+  const shoeDetails=[ 
     {fabric:'Canvas',co2:'10',brand:'FootPrint'},
     {fabric:'Leather',co2:'25',brand:'Runway'},
     {fabric:'Rubber',co2:'18',brand:'FastStep'}
   ];
 
+  //counter logic
   const visitedTops=new Set(), visitedBottoms=new Set(), visitedShoes=new Set(); // NEW
   const fabric=document.getElementById('fabric'), co2=document.getElementById('co2'), brand=document.getElementById('brand');
   const bottomFabric=document.getElementById('bottom-fabric'), bottomCo2=document.getElementById('bottom-co2'), bottomBrand=document.getElementById('bottom-brand');
@@ -255,6 +259,7 @@
     counterDisplay.textContent=`Clothing articles tried on: ${visitedTops.size+visitedBottoms.size+visitedShoes.size}`;
   }
 
+  //carousell logic
   function updateTops(){
     tops.forEach((o,i)=>{ o.classList.remove('active','left','right');
       if(i===topCurrent)o.classList.add('active');
@@ -275,7 +280,6 @@
     visitedBottoms.add(bottomCurrent); updateCounter();
   }
 
-  // NEW — updateShoes function
   function updateShoes(){
     shoes.forEach((o,i)=>{ o.classList.remove('active','left','right');
       if(i===shoeCurrent)o.classList.add('active');
@@ -291,7 +295,6 @@
   document.getElementById('top-rightArrow').addEventListener('click',()=>{ topCurrent=(topCurrent+1)%tops.length; updateTops(); });
   document.getElementById('bottom-leftArrow').addEventListener('click',()=>{ bottomCurrent=(bottomCurrent-1+bottoms.length)%bottoms.length; updateBottoms(); });
   document.getElementById('bottom-rightArrow').addEventListener('click',()=>{ bottomCurrent=(bottomCurrent+1)%bottoms.length; updateBottoms(); });
-  // NEW Shoe arrows
   document.getElementById('shoe-leftArrow').addEventListener('click',()=>{ shoeCurrent=(shoeCurrent-1+shoes.length)%shoes.length; updateShoes(); });
   document.getElementById('shoe-rightArrow').addEventListener('click',()=>{ shoeCurrent=(shoeCurrent+1)%shoes.length; updateShoes(); });
 
