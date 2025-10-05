@@ -3,58 +3,153 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LocalSite — Home</title>
+<title>Threads and Temperatures — Home</title>
 <link rel="stylesheet" href="assets/style.css"/>
+<style>
+  body.bg-photo{
+    background:
+      linear-gradient(rgba(0,0,0,.30), rgba(0,0,0,.30)),
+      url('assets/img/clothingrails.jpg') center/cover no-repeat fixed;
+  }
+</style>
 </head>
-<body>
+<body class="bg-photo">
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="brand"><span class="dot"></span> LocalSite</div>
+    <div class="brand"><span class="dot"></span> Threads and Temperatures</div>
     <div class="menu"><a href="index.html" style="background:rgba(76,201,240,.22)">Home</a><a href="games.html">Games</a><a href="data.html">Data</a><a href="articles.html">Articles</a><a href="charities.html">Charities</a></div>
   </div>
 </nav>
 
 <main class="container">
 
-<section class="hero">
-  <div class="card">
-    <span class="badge">Welcome</span>
-    <h1>Your locally hosted hub</h1>
-    <p>Everything lives on your machine: pixel-perfect games, tidy data, your own articles, and a curated list of charities. No external CDNs, just simple files you can edit.</p>
-    <div style="display:flex;gap:10px;margin-top:10px">
-      <a class="btn" href="games.html">Play a game</a>
-      <a class="btn" href="data.html">Browse data</a>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="card">
+      <span class="badge">Fast Fashion & Climate Justice</span>
+      <h1>Fashion’s hidden cost—on our planet and our people</h1>
+      <p>
+        Fast fashion accelerates carbon emissions, drains water, and creates waste—while workers and
+        communities on the frontlines bear the brunt. This site brings the impacts into focus and shows
+        how you can help.
+      </p>
+      <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+        <a class="btn" href="#impact">See the impact</a>
+        <a class="btn" href="charities.html">Take action</a>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <h2>Quick tips</h2>
-    <div class="list">
-      <div class="item"><div class="icon">⌘</div><div><strong>Serve locally:</strong> In this folder run <span class="kbd">python3 -m http.server 8000</span> then visit <span class="kbd">http://localhost:8000</span>.</div></div>
-      <div class="item"><div class="icon">✏️</div><div><strong>Edit content:</strong> Open files with any editor. Everything is plain HTML/CSS/JS.</div></div>
-      <div class="item"><div class="icon">🧭</div><div><strong>Navigate:</strong> Use the top menu to jump between sections.</div></div>
+    <div class="card" aria-labelledby="quick-stats-title">
+      <h2 id="quick-stats-title">At a glance</h2>
+      <div class="list">
+        <div class="item"><div class="icon">🧵</div><div><strong>Overproduction:</strong> Millions of tons of clothing made yearly—much ends up landfilled or burned.</div></div>
+        <div class="item"><div class="icon">💧</div><div><strong>Water stress:</strong> Cotton and dyeing strain rivers and aquifers in already-vulnerable regions.</div></div>
+        <div class="item"><div class="icon">🌍</div><div><strong>Unequal burdens:</strong> Low-income and marginalized communities face pollution, heat, and unsafe work.</div></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="grid" style="margin-top:24px">
-  <div class="card col-6">
-    <h2>What’s inside</h2>
-    <ul class="list">
-      <li class="item"><div class="icon">🎮</div><div><strong>Games:</strong> Includes a clean Tic‑Tac‑Toe you can expand.</div></li>
-      <li class="item"><div class="icon">📊</div><div><strong>Data:</strong> Loads <code>data.json</code> and renders a table.</div></li>
-      <li class="item"><div class="icon">📝</div><div><strong>Articles:</strong> Simple article cards you can duplicate.</div></li>
-      <li class="item"><div class="icon">💝</div><div><strong>Charities:</strong> A starter list with categories.</div></li>
-    </ul>
-  </div>
-  <div class="card col-6">
-    <h2>Customize</h2>
-    <p>Update colors in <code>assets/style.css</code>, and tweak layouts with the <code>.grid</code> and <code>.card</code> classes. All pages share the same nav and footer for consistency.</p>
-  </div>
-</section>
+  <!-- IMPACT SECTION -->
+  <section id="impact" class="grid" style="margin-top:24px">
+    <div class="card col-8">
+      <h2>How fast fashion fuels the climate crisis</h2>
+      <div class="list">
+        <div class="item">
+          <div class="icon">🔥</div>
+          <div>
+            <strong>Emissions along the supply chain</strong>
+            <p>From fiber production to shipping and returns, each step burns energy—often from fossil fuels.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">🧪</div>
+          <div>
+            <strong>Toxic dyes & microfibers</strong>
+            <p>Wastewater and shedding microfibers pollute waterways, harming ecosystems and human health.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">🗑️</div>
+          <div>
+            <strong>Take-make-waste model</strong>
+            <p>Ultra-fast trends push overconsumption, creating mountains of textile waste and open-air dumps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="card col-4">
+      <h2>Who is most affected?</h2>
+      <div class="list">
+        <div class="item">
+          <div class="icon">👩🏽‍🏭</div>
+          <div><strong>Garment workers</strong><p>Precarious jobs, heat stress, and exposure to chemicals.</p></div>
+        </div>
+        <div class="item">
+          <div class="icon">🏘️</div>
+          <div><strong>Fence-line communities</strong><p>Neighborhoods near mills, tanneries, and dumps inhale pollution daily.</p></div>
+        </div>
+        <div class="item">
+          <div class="icon">🌊</div>
+          <div><strong>Climate-vulnerable regions</strong><p>Droughts and floods hit hardest where resources are already scarce.</p></div>
+        </div>
+      </div>
+      <a class="btn" href="#actions" style="margin-top:10px">What you can do</a>
+    </aside>
+  </section>
+
+  <!-- SUPPLY CHAIN STORY -->
+  <section class="grid" style="margin-top:24px">
+    <div class="card col-6">
+      <h2>The journey of a garment</h2>
+      <p style="margin-bottom:10px">
+        A single t-shirt can touch farms, mills, dye houses, cut-and-sew factories, warehouses, and
+        long-haul shipping—multiplying its footprint. Deliberate choices at each step can cut emissions,
+        water use, and harm.
+      </p>
+      <div class="list">
+        <div class="item"><div class="icon">🌾</div><div><strong>Fiber:</strong> Prefer organic/regenerative or recycled fibers when possible.</div></div>
+        <div class="item"><div class="icon">⚡</div><div><strong>Manufacturing:</strong> Electrify processes and source clean power.</div></div>
+        <div class="item"><div class="icon">🔁</div><div><strong>Use phase:</strong> Wear longer, wash cooler, repair often.</div></div>
+      </div>
+    </div>
+    <div class="card col-6">
+      <h2>Data highlights</h2>
+      <p>
+        Explore a simple dataset and table on our Data page, then use the insights to discuss
+        overproduction and waste trends.
+      </p>
+      <a class="btn" href="data.html">Open the Data page</a>
+      <div class="list" style="margin-top:12px">
+        <div class="item"><div class="icon">📈</div><div><strong>Trends:</strong> Track volumes, categories, and changes over time.</div></div>
+        <div class="item"><div class="icon">🧭</div><div><strong>Decisions:</strong> Connect data to worker safety and climate goals.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIONS -->
+  <section id="actions" class="grid" style="margin-top:24px">
+    <div class="card col-12">
+      <h2>Turn awareness into action</h2>
+      <div class="list">
+        <div class="item">
+          <div class="icon">🛒</div>
+          <div><strong>Buy less, choose better</strong><p>Prioritize durability, repairability, and verified standards.</p></div>
+        </div>
+        <div class="item">
+          <div class="icon">🪡</div>
+          <div><strong>Care & repair</strong><p>Extend the life of clothes—wash cold, mend, and swap before buying new.</p></div>
+        </div>
+        <div class="item">
+          <div class="icon">🤝</div>
+          <div><strong>Support advocates</strong><p>Donate or volunteer with organizations improving labor and environmental justice.</p></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+        <a class="btn" href="charities.html">Find charities</a>
+        <a class="btn" href="articles.html">Read more</a>
+      </div>
+    </div>
+  </section>
 
 </main>
-<footer class="container">© <span id="year"></span> • Made locally</footer>
-<script src="assets/script.js"></script>
-</body>
-</html>
