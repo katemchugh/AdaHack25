@@ -84,8 +84,8 @@
         let best={iso:null,dist:1e9};
         for(const iso of sources){
           const n = st.data.nodes[iso]; if(!n || n.lat==null) continue;
-          // Flip and mirror
-          const p = project(-n.lat, -n.lon, st); if(!p.visible) continue;
+          // Use same transform as world polygons
+          const p = project(-n.lat, n.lon, st); if(!p.visible) continue;
           const d = Math.hypot(p.x - x, p.y - y); if(d < best.dist) best={iso,dist:d};
         }
         if(best.iso && best.dist<=12) st.hoverISO = best.iso;
@@ -181,7 +181,8 @@
         if(!prev){ ctx.moveTo(pr.x,pr.y); prev=pr; started=true; } else { ctx.lineTo(pr.x,pr.y); prev=pr; }
       }
       ctx.stroke();
-    const prDst = project(-dst.lat, dst.lon, st);
+      // Arrow destination: use same transform
+      const prDst = project(-dst.lat, dst.lon, st);
       if(prDst.visible && started){
         drawArrowHead(prev, prDst);
         ctx.fillStyle='rgba(14,116,144,1)'; ctx.beginPath(); ctx.arc(prDst.x,prDst.y,3.5,0,TAU); ctx.fill();
