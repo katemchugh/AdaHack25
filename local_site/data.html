@@ -58,7 +58,7 @@
 
   // ---------- canvas + state ----------
   const canvas = document.getElementById('globe'), ctx = canvas.getContext('2d');
-  const st = { w:300,h:300,R:140,cx:150,cy:150, lat0:d2r(15), lon0:d2r(-20), dragging:false, hoverISO:null, data:null, maxKg:1 };
+  const st = { w:300,h:300,R:140,cx:150,cy:150, lat0:d2r(15), lon0:d2r(-20), dragging:false, hoverISO:null, data:null, maxKg:1, world:null };
   function resize(){
     const dpr=window.devicePixelRatio||1, cssW=Math.min(900, canvas.clientWidth||900), cssH=canvas.clientHeight||520;
     canvas.width=cssW*dpr; canvas.height=cssH*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
@@ -113,6 +113,35 @@
       } ctx.stroke();
     }
     ctx.setLineDash([]); ctx.restore();
+  }
+  function drawWorld(){
+    if(!st.world) return;
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(0,0,0,.25)';
+    ctx.fillStyle = 'rgba(255,255,255,.35)';
+    const feats = st.world.type==='FeatureCollection' ? st.world.features : [];
+    for(const f of feats){
+      const g = f.geometry; if(!g) continue;
+      const polys = g.type === 'Polygon' ? [g.coordinates] : (g.type === 'MultiPolygon' ? g.coordinates : []);
+      for(const poly of polys){
+        // poly: Array of linear rings (first is outer)
+        ctx.beginPath();
+        for(const ring of poly){
+          let first=true; let started=false;
+          for(const coord of ring){
+            const lon = coord[0], lat = coord[1];
+            const p = project(lat, lon, st);
+            if(!p.visible){ first=true; continue; }
+            if(first){ ctx.moveTo(p.x, p.y); first=false; started=true; }
+            else ctx.lineTo(p.x, p.y);
+          }
+        }
+        ctx.fill();
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
   }
   function drawMarkers(){
     if(!st.data) return;
@@ -173,7 +202,7 @@
   function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.save(); ctx.beginPath(); ctx.arc(st.cx, st.cy, st.R, 0, TAU); ctx.clip();
-    drawSphere(); drawGraticule(); ctx.restore();
+    drawSphere(); drawGraticule(); drawWorld(); ctx.restore();
     drawMarkers(); drawFlows();
   }
 
@@ -212,6 +241,12 @@
         box.style.display='none';
       }
 
+      // load world land (GeoJSON) for coastline overlay
+      try{
+        const worldRes = await fetch('https://unpkg.com/geojson-world@4/geojson/world-110m.geo.json');
+        if(worldRes.ok){ st.world = await worldRes.json(); }
+      }catch(_e){ /* optional */ }
+
       resize(); // initial draw
     }catch(e){
       console.error(e);
@@ -228,15 +263,17 @@
 
 <section class="card">
   <h1>Data</h1>
-  <p>This page loads <code>data.json</code> and renders a sortable table (client-side only).</p>
+  <p>This page loads the real trade data CSV and renders a sortable table (client-side only).</p>
   <div style="overflow:auto">
     <table class="table" id="dataTable">
       <thead>
         <tr>
-          <th data-key="id">ID ▲</th>
-          <th data-key="name">Name</th>
-          <th data-key="category">Category</th>
-          <th data-key="value">Value</th>
+          <th data-key="refYear">refYear ▲</th>
+          <th data-key="reporterISO">reporterISO</th>
+          <th data-key="reporterDesc">reporterDesc</th>
+          <th data-key="partnerISO">partnerISO</th>
+          <th data-key="partnerDesc">partnerDesc</th>
+          <th data-key="qty">qty</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -244,12 +281,60 @@
   </div>
 </section>
 
-<!-- Existing table script -->
+<!-- CSV-backed table script -->
 <script>
 (async function(){
-  const res = await fetch('assets/data.json');
-  const rows = await res.json();
-  let sortKey = 'id', asc = true;
+  const CSV_URL = 'assets/TradeData_10_5_2025_15_33_47.csv';
+
+  function parseCSV(text){
+    const rows = [];
+    let i = 0, field = '', row = [], inQuotes = false;
+    function endField(){ row.push(field); field=''; }
+    function endRow(){ rows.push(row); row = []; }
+    while(i < text.length){
+      const ch = text[i];
+      if(inQuotes){
+        if(ch === '"'){
+          if(text[i+1] === '"'){ field += '"'; i += 2; continue; }
+          inQuotes = false; i++; continue;
+        }
+        field += ch; i++; continue;
+      } else {
+        if(ch === '"'){ inQuotes = true; i++; continue; }
+        if(ch === ','){ endField(); i++; continue; }
+        if(ch === '\n'){ endField(); endRow(); i++; continue; }
+        if(ch === '\r'){ i++; continue; }
+        field += ch; i++;
+      }
+    }
+    // flush last field/row
+    endField(); if(row.length) endRow();
+    return rows;
+  }
+
+  function toObjects(matrix){
+    if(!matrix.length) return [];
+    const headers = matrix[0];
+    return matrix.slice(1).filter(r=>r.some(c=>c&&c.trim()!=='')).map(cols=>{
+      const obj = {};
+      headers.forEach((h, idx)=>{ obj[h] = cols[idx] !== undefined ? cols[idx] : ''; });
+      return obj;
+    });
+  }
+
+  const res = await fetch(CSV_URL, { cache: 'no-store' });
+  const csvText = await res.text();
+  const matrix = parseCSV(csvText);
+  let rows = toObjects(matrix).map(r=>({
+    refYear: parseInt(r.refYear, 10) || 0,
+    reporterISO: r.reporterISO || '',
+    reporterDesc: r.reporterDesc || '',
+    partnerISO: r.partnerISO || '',
+    partnerDesc: r.partnerDesc || '',
+    qty: isNaN(parseFloat(r.qty)) ? 0 : parseFloat(r.qty)
+  }));
+
+  let sortKey = 'refYear', asc = true;
   const tbody = document.querySelector('#dataTable tbody');
   const heads = document.querySelectorAll('#dataTable thead th');
   heads.forEach(th=>th.addEventListener('click',()=>{
@@ -260,14 +345,36 @@
     heads.forEach(h=>h.textContent=h.textContent.replace(' ▲','').replace(' ▼',''));
     th.textContent = th.textContent.replace(' ▲','').replace(' ▼','') + (asc?' ▲':' ▼');
   }));
-  function render(){
-    const sorted = rows.slice().sort((a,b)=>{
-      if(a[sortKey] < b[sortKey]) return asc?-1:1;
-      if(a[sortKey] > b[sortKey]) return asc?1:-1;
-      return 0;
-    });
-    tbody.innerHTML = sorted.map(r=>`<tr><td>${r.id}</td><td>${r.name}</td><td>${r.category}</td><td>${r.value}</td></tr>`).join('');
+
+  function cmp(a,b){
+    const av = a[sortKey];
+    const bv = b[sortKey];
+    const numKeys = new Set(['refYear','qty']);
+    if(numKeys.has(sortKey)){
+      return asc ? (av - bv) : (bv - av);
+    }
+    const as = (av||'').toString().toLowerCase();
+    const bs = (bv||'').toString().toLowerCase();
+    if(as < bs) return asc?-1:1;
+    if(as > bs) return asc?1:-1;
+    return 0;
   }
+
+  function render(){
+    const sorted = rows.slice().sort(cmp);
+    const fmt = n => n.toLocaleString();
+    tbody.innerHTML = sorted.map(r=>
+      `<tr>`+
+      `<td>${r.refYear}</td>`+
+      `<td>${r.reporterISO}</td>`+
+      `<td>${r.reporterDesc}</td>`+
+      `<td>${r.partnerISO}</td>`+
+      `<td>${r.partnerDesc}</td>`+
+      `<td style="text-align:right">${fmt(r.qty)}</td>`+
+      `</tr>`
+    ).join('');
+  }
+
   render();
 })();
 </script>
